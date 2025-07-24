@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Bobby - Bullet Basecamp{% endblock %}
+{% block content %}
+<section class="hero-section" style="position: relative; min-height: 520px; display: flex; align-items: center; background: linear-gradient(120deg, #181818 60%, #FF6B35 120%); overflow: hidden;">
+    <img src="{{ url_for('static', filename='images/bobbypic.jpg') }}" alt="Bobby" class="hero-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.45; z-index: 1;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,107,53,0.10) 0%, rgba(24,24,24,0.45) 100%); z-index: 2;"></div>
+    <div class="hero-content" style="position: relative; z-index: 3; max-width: 650px; margin-left: 4vw; color: #fff; text-align: left; background: rgba(24,24,24,0.82); border-radius: 1.2rem; box-shadow: 0 8px 40px #FF6B3533, 0 2px 16px #0008; padding: 2.5rem 2rem; border-left: 8px solid #FF6B35;">
+        <p class="hero-tagline" style="color: #FF6B35; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 0.5rem;">Tour Guide</p>
+        <h1 class="hero-title" style="font-size: 2.8rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -1px; color: #fff;">Bobby</h1>
+        <p class="body-text" style="font-size: 1.15rem; color: #e0e0e0; margin-bottom: 1.5rem;">Bobby is the go-to guy for off-road adventures and local secrets. With a knack for making every ride fun and safe, he’s the team’s energy booster and a favorite among riders. Fluent in three languages and always ready with a joke or a helping hand, Bobby makes every tour unforgettable.</p>
+        <ul class="body-text" style="margin: 1rem 0 0 0; padding-left: 1.2rem; text-align: left; color: #fff;">
+            <li>Expert in off-road and adventure routes</li>
+            <li>Fluent in English, Nepali, and Hindi</li>
+            <li>Known for his humor and positive energy</li>
+            <li>Passionate about local culture and history</li>
+            <li>Always ready to help riders in tough spots</li>
+        </ul>
+        <div style="margin-top: 2rem; font-size: 1.13rem; color: #FF6B35; font-style: italic; font-weight: 700; letter-spacing: 1px;">“Every detour is a new story waiting to happen.”</div>
+        <div style="margin-top: 1.5rem; background: linear-gradient(90deg, #FF6B35 60%, #fff2e6 100%); color: #222; border-radius: 0.7rem; padding: 1.2rem 1.5rem; font-weight: 700; font-size: 1.08rem; box-shadow: 0 2px 12px #FF6B3533;">
+            <b>Fun Fact:</b> Bobby once guided a group through a monsoon river crossing—on foot, carrying their helmets!
+        </div>
+        <div style="margin-top: 2rem; color: #fff; font-size: 1.08rem; background: rgba(24,24,24,0.55); border-radius: 0.5rem; padding: 1rem 1.2rem; box-shadow: 0 2px 8px #0004;">
+            <b>More About Bobby:</b><br>
+            Bobby’s the guy who turns every challenge into an adventure. Riders love his energy, his stories, and his ability to keep the group laughing even when the road gets tough. He’s the team’s secret weapon for making every trip unforgettable.
+        </div>
+    </div>
+</section>
+<section class="content-section gallery-section" style="background: #f8f8f8; padding: 4rem 0;">
+    <div class="container">
+        <h2 class="section-title" style="color: #222; text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem; font-weight: 900; letter-spacing: -1px;">Bobby's Adventure Gallery</h2>
+        <div class="gallery-grid">
+            {% set gallery_images = [
+                'images/rajupic1.jpg',
+                'images/rajupic2.jpg',
+                'images/rajupic3.jpg',
+                'images/rajupic4.jpg',
+                'images/rajupic5.jpg',
+                'images/rajupic6.jpg'
+            ] %}
+            {% for img in gallery_images %}
+            <div class="gallery-item">
+                <a href="{{ url_for('static', filename=img) }}" class="gallery-link" data-lightbox="gallery">
+                    <img src="{{ url_for('static', filename=img) }}" alt="Bobby Gallery" class="gallery-img">
+                    <div class="gallery-overlay"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM7 7h10v10H7z"/></svg></div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<style>
+.hero-section {
+    min-height: 420px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #232526;
+    overflow: hidden;
+}
+.hero-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.32; z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin-left: 4vw;
+    color: #fff;
+    text-align: left;
+}
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    color: #fff;
+}
+.hero-tagline {
+    color: #FF6B35;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+.gallery-section {
+    font-family: 'Inter', sans-serif;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 6px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.7rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+.gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(24,24,24,0.18);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-img {
+    transform: scale(1.06);
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    background: rgba(24,24,24,0.45);
+}
+.gallery-overlay svg {
+    filter: drop-shadow(0 2px 8px #0008);
+}
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 140px;
+    }
+}
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 120px;
+        gap: 4px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.gallery-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const src = this.getAttribute('href');
+            const lightbox = document.createElement('div');
+            lightbox.className = 'gallery-lightbox';
+            lightbox.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(24,24,24,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;';
+            lightbox.innerHTML = `<img src='${src}' style='max-width:90vw;max-height:90vh;border-radius:0.7rem;box-shadow:0 8px 32px #000a;'><span style='position:absolute;top:2rem;right:2rem;font-size:2.5rem;color:#fff;cursor:pointer;'>&times;</span>`;
+            document.body.appendChild(lightbox);
+            lightbox.querySelector('span').onclick = () => lightbox.remove();
+            lightbox.onclick = (ev) => { if(ev.target === lightbox) lightbox.remove(); };
+        });
+    });
+});
+</script>
+{% endblock %} 

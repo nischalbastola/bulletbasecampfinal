@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bullet Basecamp - Motorcycle Tours, Rentals & Repairs{% endblock %}</title>
+    <meta name="description" content="{% block description %}Bullet Basecamp offers premium motorcycle tours, rentals, and repair services. Experience the thrill of Royal Enfield adventures.{% endblock %}">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
+    <!-- Local Business Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MotorcycleRepair",
+        "name": "Bullet Basecamp Pokhara",
+        "alternateName": "Bullet Basecamp",
+        "description": "Best motorcycle repair shop, Royal Enfield tours and bike rental in Pokhara Nepal. Located in Lakeside near Phewa Lake.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Lakeside Road, Ward No. 6, Baidam",
+            "addressLocality": "Pokhara",
+            "addressRegion": "Kaski District",
+            "postalCode": "33700",
+            "addressCountry": "NP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "28.2096",
+            "longitude": "83.9856"
+        },
+        "telephone": "+977 9864434112",
+        "email": "bulletbasecampnepal@gmail.com",
+        "url": "https://bulletbasecamp.com",
+        "openingHours": "Mo-Su 07:00-21:00",
+        "priceRange": "$$",
+        "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+        "currenciesAccepted": "NPR, USD",
+        "areaServed": ["Pokhara", "Kaski District", "Nepal", "Lakeside", "Baidam"],
+        "serviceType": ["Motorcycle Repair", "Royal Enfield Service", "Motorcycle Tours", "Bike Rental", "Oil Change", "Puncture Repair", "Emergency Service"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Motorcycle Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Royal Enfield Repair Service",
+                        "description": "Expert Royal Enfield motorcycle repair and maintenance in Pokhara"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Himalayan Motorcycle Tours",
+                        "description": "Guided motorcycle tours from Pokhara to Annapurna, Mustang and Himalayas"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Royal Enfield Rental",
+                        "description": "Daily and weekly motorcycle rental in Pokhara Lakeside"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="keywords" content="motorcycle repair Pokhara, Royal Enfield service Pokhara, bike rental Pokhara, Himalayan tours Pokhara, motorcycle workshop Lakeside">
+    <meta name="geo.region" content="NP-Kaski">
+    <meta name="geo.placename" content="Pokhara">
+    <meta name="geo.position" content="28.2096;83.9856">
+    <meta name="ICBM" content="28.2096, 83.9856">
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages" id="flashMessages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}" data-category="{{ category }}">
+                        <div class="flash-icon">
+                            {% if category == 'success' %}
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                </svg>
+                            {% elif category == 'error' %}
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            {% else %}
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                </svg>
+                            {% endif %}
+                        </div>
+                        <div class="flash-content">{{ message }}</div>
+                        <button class="flash-close" onclick="closeFlashMessage(this)" aria-label="Close message">×</button>
+                        <div class="flash-progress"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="nav-logo" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/newlogobasecamp.png') }}" alt="Bullet Basecamp Logo" style="height: 40px; width: auto; max-width: 480px; display: block; object-fit: contain;" />
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="nav-link" data-page="home">Home</a></li>
+                <li><a href="{{ url_for('tours') }}" class="nav-link" data-page="tours">Tours</a></li>
+                <li><a href="{{ url_for('rentals') }}" class="nav-link" data-page="rentals">Rentals</a></li>
+                <li><a href="{{ url_for('repairs') }}" class="nav-link" data-page="repairs">Repairs</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link" data-page="about">About</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+        
+        <!-- Floating WhatsApp Icon -->
+        <a href="https://wa.me/9779864434112" class="whatsapp-float" id="whatsapp-float" target="_blank" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"></path>
+            </svg>
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info Section -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-bullet">BULLET</span> BASECAMP
+                    </div>
+                    <p class="footer-tagline">Motorcycle Tours, Rentals & Repair Service</p>
+                    <p class="footer-description">Pokhara's premier motorcycle workshop. Royal Enfield repair, Himalayan tours, and bike rentals in Lakeside Pokhara Nepal. Expert mechanics with over 30 years of experience.</p>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@bulletbasecamp?si=e93-uv9Zu4BZUGpc" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/bulletbasecamp" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/100063604642856/" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/9779864434112" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@bulletbasecamp" class="social-link" aria-label="TikTok" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.667 2.667h-3.2v18.56c0 1.493-1.213 2.773-2.88 2.773-1.653 0-2.88-1.28-2.88-2.773 0-1.493 1.227-2.773 2.88-2.773.32 0 .64.053.933.16v-3.253a6.08 6.08 0 0 0-.933-.08c-3.52 0-6.4 2.773-6.4 6.173 0 3.413 2.88 6.187 6.4 6.187 3.52 0 6.4-2.773 6.4-6.187V10.667c1.013.613 2.16.96 3.2.96v-3.2c-.96 0-2.187-.613-2.88-1.44-.693-.827-.96-1.6-.96-2.24V2.667z" fill="#fff"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">CONTACT US</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <div class="contact-text">
+                                <p>Lakeside Road, Ward No. 6</p>
+                                <p>Baidam, Pokhara 33700, Nepal</p>
+                                <p>(Opposite to Phewa Lake)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <div class="contact-text">
+                                <p>+977 9864434112</p>
+                                <p>+977 9816125330</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <div class="contact-text">
+                                <p>bulletbasecampnepal@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            <div class="contact-text">
+                                <p>bulletbasecamp.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Section -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">QUICK LINKS</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('about') }}">OUR STORY</a></li>
+                        <li><a href="{{ url_for('tours') }}">MOTORCYCLE TOURS</a></li>
+                        <li><a href="{{ url_for('rentals') }}">BIKE RENTALS</a></li>
+                        <li><a href="{{ url_for('repairs') }}">REPAIRS & SERVICE</a></li>
+                        <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">&copy; 2024 Bullet Basecamp. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Floating Button -->
+    {% if is_admin %}
+    <div class="admin-fab">
+        <button class="admin-fab-button" onclick="toggleAdminMenu()">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V9C15 10.66 13.66 12 12 12S9 10.66 9 12V9L3 7V9C3 10.66 4.34 12 6 12H8V22H10V16H14V22H16V12H18C19.66 12 21 10.66 21 9Z" fill="currentColor"/>
+            </svg>
+        </button>
+        <div class="admin-fab-menu">
+            <div class="admin-fab-header">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; margin-right: 8px;">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#FF6B35"/>
+                </svg>
+                <span>Rohan Chhetri</span>
+            </div>
+            <a href="{{ url_for('admin_dashboard') }}" class="admin-fab-item">
+                <svg class="admin-fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/>
+                </svg>
+                Dashboard
+            </a>
+            <a href="{{ url_for('admin_tours') }}" class="admin-fab-item">
+                <svg class="admin-fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z" fill="currentColor"/>
+                </svg>
+                Tours
+            </a>
+            <a href="{{ url_for('admin_rentals') }}" class="admin-fab-item">
+                <svg class="admin-fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" fill="currentColor"/>
+                </svg>
+                Rentals
+            </a>
+            <a href="{{ url_for('admin_messages') }}" class="admin-fab-item">
+                <svg class="admin-fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2M6,9H18V11H6V9M14,14H6V12H14V14M18,8H6V6H18V8Z" fill="currentColor"/>
+                </svg>
+                Messages
+            </a>
+            <a href="#" onclick="confirmLogout(event)" class="admin-fab-item logout">
+                <svg class="admin-fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" fill="currentColor"/>
+                </svg>
+                Logout
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Clear all active states first
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Determine current page
+            let currentPage = 'home';
+            
+            if (currentPath.includes('/tours') || currentPath.includes('/tour/')) {
+                currentPage = 'tours';
+            } else if (currentPath.includes('/rentals') || currentPath.includes('/bike/')) {
+                currentPage = 'rentals';
+            } else if (currentPath.includes('/repairs')) {
+                currentPage = 'repairs';
+            } else if (currentPath.includes('/about')) {
+                currentPage = 'about';
+            } else if (currentPath.includes('/contact')) {
+                currentPage = 'contact';
+            } else if (currentPath === '/' || currentPath === '') {
+                currentPage = 'home';
+            }
+            
+            // Set active state for current page
+            const activeLink = document.querySelector(`[data-page="${currentPage}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+                }
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', function() {
+            const scrollProgressBar = document.getElementById('scrollProgressBar');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            scrollProgressBar.style.width = scrollPercent + '%';
+        });
+
+        // Force video autoplay on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('.hero-video');
+            
+            videos.forEach(function(video) {
+                // Ensure video is muted and has playsinline
+                video.muted = true;
+                video.playsInline = true;
+                
+                // Try to play the video
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        // Video started playing successfully
+                        console.log('Video autoplay successful');
+                    }).catch(function(error) {
+                        // Autoplay failed, try again on user interaction
+                        console.log('Autoplay failed, waiting for user interaction');
+                        
+                        // Add click listener to start video on first user interaction
+                        const startVideo = function() {
+                            video.play().catch(function(e) {
+                                console.log('Still failed to play:', e);
+                            });
+                            document.removeEventListener('click', startVideo);
+                            document.removeEventListener('touchstart', startVideo);
+                        };
+                        
+                        document.addEventListener('click', startVideo);
+                        document.addEventListener('touchstart', startVideo);
+                    });
+            }
+            });
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

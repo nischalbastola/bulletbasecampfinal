@@ -1,0 +1,1462 @@
+{% extends "base.html" %}
+
+{% block title %}{{ bike.name }} - Royal Enfield Rental in Pokhara - Bullet Basecamp{% endblock %}
+{% block description %}Rent {{ bike.name }} in Pokhara Lakeside. {{ bike.description }} Daily and weekly rental rates available. Insurance included.{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Layout Like Riderly -->
+<section class="content-section" style="padding-top: 6rem; background: #F8F8F8;">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <!--
+        <div style="margin-bottom: 2rem;">
+            <p class="body-text" style="color: #666; font-size: 0.9rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Bullet Basecamp, Lakeside, Pokhara
+            </p>
+        </div>
+        -->
+
+        <!-- Main Hero Layout -->
+        <div class="bike-detail-hero">
+            <!-- Left Side - Image (MOVED UP FOR MOBILE) -->
+            <div class="bike-image-section">
+                <div class="bike-main-image">
+                    <img src="{{ url_for('static', filename=get_image_path(bike.image)) }}" alt="{{ bike.name }}" class="main-bike-img">
+                    <div class="bike-location" style="display: flex; align-items: center; justify-content: center; margin-top: 0.75rem; gap: 0.5rem; font-size: 1rem; color: #444; font-weight: 500;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B35" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Bullet Basecamp, Lakeside, Pokhara
+                    </div>
+                    {% if bike.available %}
+                        <span class="availability-badge available">Available</span>
+                    {% else %}
+                        <span class="availability-badge rented">Rented</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h1 class="bike-title">{{ bike.name }}</h1>
+                    <div class="bike-category">{{ bike.category if bike.category else 'ROYAL ENFIELD' }}</div>
+                </div>
+                <div class="bike-specs">
+                    
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5V7C21 7.55 20.55 8 20 8H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V8H4C3.45 8 3 7.55 3 7V5C3 4.45 3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 8V19H17V8H7Z"/>
+                                <path d="M9 10H11V17H9V10ZM13 10H15V17H13V10Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Engine:</span>
+                        <span class="spec-value">{{ bike.specs.engine or '411cc Single Cylinder' }}</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 2V13H10V22L17 10H13L17 2H7Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Power:</span>
+                        <span class="spec-value">{{ bike.specs.power or '24.3 bhp' }}</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                                <path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Torque:</span>
+                        <span class="spec-value">{{ bike.specs.torque or '32 Nm @ 4250±250 RPM' }}</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 10V6C18 4.9 17.1 4 16 4H8C6.9 4 6 4.9 6 6V10C4.9 10 4 10.9 4 12V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V12C20 10.9 19.1 10 18 10ZM8 6H16V10H8V6ZM18 18H6V12H18V18Z"/>
+                                <path d="M12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Fuel capacity:</span>
+                        <span class="spec-value">{{ bike.specs.fuel_capacity or '15L' }}</span>
+                    </div>
+                    
+                    {% if bike.specs.start_mode %}
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <path d="M12 6C9.79 6 8 7.79 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 7.79 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12Z"/>
+                                <path d="M12 16C9.33 16 6.68 17.11 4.53 19.47L6.47 21.41C8.21 19.66 10.05 18.5 12 18.5C13.95 18.5 15.79 19.66 17.53 21.41L19.47 19.47C17.32 17.11 14.67 16 12 16Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Start mode:</span>
+                        <span class="spec-value">{{ bike.specs.start_mode }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if bike.specs.weight %}
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <path d="M12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Weight:</span>
+                        <span class="spec-value">{{ bike.specs.weight }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if bike.specs.ground_clearance %}
+                    <div class="spec-item">
+                        <span class="spec-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <path d="M7 14H17V16H7V14ZM7 10H17V12H7V10ZM7 6H17V8H7V6Z"/>
+                            </svg>
+                        </span>
+                        <span class="spec-label" style="font-weight:600; color:#444; margin-right:0.5rem;">Ground clearance:</span>
+                        <span class="spec-value">{{ bike.specs.ground_clearance }}</span>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                <p class="body-text" style="margin-top: 1.5rem; color: #333;">{{ bike.description }}</p>
+            </div>
+            <!-- Right Side - Booking Panel -->
+            <div class="booking-panel" data-base-price="{{ bike.price_per_day.replace('$', '').replace(',', '') }}">
+                <div class="rental-info">
+                    <div id="price-display-container">
+                        <div class="price-original-struck"></div>
+                        <div class="price-final">
+                            <span class="rental-price">{{ bike.price_per_day }}</span>
+                            <span class="price-period">/day</span>
+                        </div>
+                        <div class="discount-tag"></div>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                                </svg>
+                                NUMBER OF DAYS
+                            </label>
+                            <input type="number" class="days-input" min="1" max="99" value="1" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 4px; font-family: 'Inter', sans-serif; background: #FFFFFF;">
+                            <div class="days-error" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.5rem; display: none;">Sorry, limit is 99 days.</div>
+                            <div class="discount-info">
+                                3+ days: 5% off<br>
+                                7+ days: 10% off<br>
+                                14+ days: 15% off
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H20A6,6 0 0,0 14,8H10A6,6 0 0,0 4,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M9,12A1,1 0 0,1 10,13A1,1 0 0,1 9,14A1,1 0 0,1 8,13A1,1 0 0,1 9,12M15,12A1,1 0 0,1 16,13A1,1 0 0,1 15,14A1,1 0 0,1 14,13A1,1 0 0,1 15,12Z"/>
+                            </svg>
+                            NUMBER OF BIKES
+                        </label>
+                        <input type="number" class="bikes-input" min="1" max="10" value="1" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 4px; font-family: 'Inter', sans-serif; background: #FFFFFF;">
+                        <div class="bikes-error" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.5rem; display: none;">Sorry, limit is 10 bikes.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                            PICKUP DATE & TIME
+                        </label>
+                        <input type="datetime-local" class="datetime-input" required style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 4px; font-family: 'Inter', sans-serif; background: #FFFFFF; box-sizing: border-box;">
+                    </div>
+                    {% if bike.available %}
+                        <button type="button" class="book-now-btn" id="book-now-btn">BOOK NOW</button>
+                    {% else %}
+                        <button class="book-now-btn unavailable" disabled>CURRENTLY UNAVAILABLE</button>
+                    {% endif %}
+                    <button type="button" class="inquiry-btn" id="inquiry-btn">INQUIRY</button>
+                    <div class="booking-guarantee">
+                        Best price <strong>guaranteed and negotiable</strong>
+                    </div>
+                    <div class="booking-features" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: 1rem;">
+                        <div style="display: flex; align-items: center; color: #28a745; font-weight: 600; font-size: 1rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                            Free amendments
+                        </div>
+                        <div style="display: flex; align-items: center; color: #28a745; font-weight: 600; font-size: 1rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                            24/7 Customer Service
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bike Title and Category -->
+        <!--
+        <div style="margin-top: 3rem;">
+            <h1 class="bike-title">{{ bike.name }}</h1>
+            <div class="bike-category">{{ bike.category if bike.category else 'ROYAL ENFIELD' }}</div>
+        </div>
+
+        <!-- Technical Specs -->
+        <!--
+        <div class="bike-specs">
+            <div class="spec-item">
+                <span class="spec-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L13.09 8.26L22 9L15.5 12L17 18.74L12 16L7 18.74L8.5 12L2 9L10.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <span class="spec-value">{{ bike.specs.engine or '350cc' }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11,4H13V16L18.5,21.5L17.08,22.92L12,17.84L6.92,22.92L5.5,21.5L11,16V4M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z"/>
+                    </svg>
+                </span>
+                <span class="spec-value">{{ bike.specs.power or '20 HP' }}</span>
+            </div>
+        </div>
+        -->
+    </div>
+</section>
+
+<!-- Included in the Price -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title">Included in the Price</h2>
+        <p class="section-subtitle">EVERYONE LOVES FREE STUFF!</p>
+        
+        <div class="included-grid">
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H20A6,6 0 0,0 14,8H10A6,6 0 0,0 4,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M9,12A1,1 0 0,1 10,13A1,1 0 0,1 9,14A1,1 0 0,1 8,13A1,1 0 0,1 9,12M15,12A1,1 0 0,1 16,13A1,1 0 0,1 15,14A1,1 0 0,1 14,13A1,1 0 0,1 15,12Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Certified Helmet</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,13L13.5,7.5C13.1,6.2 11.9,5.5 10.5,5.5C9.8,5.5 9.2,5.7 8.7,6.1L7,7.3C6.8,7.5 6.6,7.9 6.6,8.3S6.8,9.1 7,9.3L8.5,10.8L7.8,16L10.3,16.2L11.2,10.9L12.4,8L14,13.5L9.5,18.5C9.2,18.8 9,19.3 9,19.7S9.2,20.6 9.5,20.9L10.6,22L17,15.6V17H19V13H15V15H16.4L12,19.4L11.6,19L16.8,13.8L21,9M6,14H4V16H2V18H4V20H6V18H8V16H6V14Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Bungee Cords</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.15,9.3C19.75,8.29 20,7.11 20,5.86C20,5.33 19.75,4.83 19.31,4.5C17.8,3.17 15.04,3.95 12,7C8.96,3.95 6.2,3.17 4.69,4.5C4.25,4.83 4,5.33 4,5.86C4,7.11 4.25,8.29 4.85,9.3C3.17,10.45 2,12.58 2,15A7,7 0 0,0 9,22H15A7,7 0 0,0 22,15C22,12.58 20.83,10.45 19.15,9.3Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Rain Gear</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,13L13.5,7.5C13.1,6.2 11.9,5.5 10.5,5.5C9.8,5.5 9.2,5.7 8.7,6.1L7,7.3C6.8,7.5 6.6,7.9 6.6,8.3S6.8,9.1 7,9.3L8.5,10.8L7.8,16L10.3,16.2L11.2,10.9L12.4,8L14,13.5L9.5,18.5C9.2,18.8 9,19.3 9,19.7S9.2,20.6 9.5,20.9L10.6,22L17,15.6V17H19V13H15V15H16.4L12,19.4L11.6,19L16.8,13.8L21,9M6,14H4V16H2V18H4V20H6V18H8V16H6V14Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Basic Safety (Knee & Elbow Guard)</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17,6H22V8H21V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V8H2V6H7A2,2 0 0,1 9,4H15A2,2 0 0,1 17,6M9,8V6H15V8H9M5,8V19H19V8H5Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Safe Luggage Storage</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Mechanical Checkup Before Departure</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2L13.09,8.26L22,9L15.5,12L17,18.74L12,16L7,18.74L8.5,12L2,9L10.91,8.26L12,2Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Basic Toolkits and Spare Parts</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Local Rider Tips and Route Advice</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </div>
+                <div class="included-content">
+                    <div class="included-title">Saturday Drop Off and Pick Up</div>
+                    <div class="included-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#28a745" style="margin-right: 0.5rem;">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        Free
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Available Add-ons -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title">Available Add-ons</h2>
+        <p class="section-subtitle">NEED A LITTLE EXTRA?</p>
+        
+        <div class="addons-grid">
+            <div class="addon-item" data-price="5">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.15,9.3C19.75,8.29 20,7.11 20,5.86C20,5.33 19.75,4.83 19.31,4.5C17.8,3.17 15.04,3.95 12,7C8.96,3.95 6.2,3.17 4.69,4.5C4.25,4.83 4,5.33 4,5.86C4,7.11 4.25,8.29 4.85,9.3C3.17,10.45 2,12.58 2,15A7,7 0 0,0 9,22H15A7,7 0 0,0 22,15C22,12.58 20.83,10.45 19.15,9.3Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Gloves</div>
+                    <div class="addon-price">+ $5 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-gloves">
+                    <label for="addon-gloves" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="8">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H20A6,6 0 0,0 14,8H10A6,6 0 0,0 4,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M9,12A1,1 0 0,1 10,13A1,1 0 0,1 9,14A1,1 0 0,1 8,13A1,1 0 0,1 9,12M15,12A1,1 0 0,1 16,13A1,1 0 0,1 15,14A1,1 0 0,1 14,13A1,1 0 0,1 15,12Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Additional Helmet</div>
+                    <div class="addon-price">+ $8 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-additional-helmet">
+                    <label for="addon-additional-helmet" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="15">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,13L13.5,7.5C13.1,6.2 11.9,5.5 10.5,5.5C9.8,5.5 9.2,5.7 8.7,6.1L7,7.3C6.8,7.5 6.6,7.9 6.6,8.3S6.8,9.1 7,9.3L8.5,10.8L7.8,16L10.3,16.2L11.2,10.9L12.4,8L14,13.5L9.5,18.5C9.2,18.8 9,19.3 9,19.7S9.2,20.6 9.5,20.9L10.6,22L17,15.6V17H19V13H15V15H16.4L12,19.4L11.6,19L16.8,13.8L21,9M6,14H4V16H2V18H4V20H6V18H8V16H6V14Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Riding Jackets</div>
+                    <div class="addon-price">+ $15 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-riding-jackets">
+                    <label for="addon-riding-jackets" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="15">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A3,3 0 0,1 15,5V9A1,1 0 0,1 14,10H13V22H11V10H10A1,1 0 0,1 9,9V5A3,3 0 0,1 12,2M12,4A1,1 0 0,0 11,5V8H13V5A1,1 0 0,0 12,4Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Riding Pants</div>
+                    <div class="addon-price">+ $15 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-riding-pants">
+                    <label for="addon-riding-pants" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="3">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21C5,22.11 5.89,23 7,23H17C18.11,23 19,22.11 19,21V3C19,1.89 18.11,1 17,1Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Phone Holder</div>
+                    <div class="addon-price">+ $3 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-phone-holder">
+                    <label for="addon-phone-holder" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="90">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Tour Guide</div>
+                    <div class="addon-price">+ $90 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-tour-guide">
+                    <label for="addon-tour-guide" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="80">
+                <div class="addon-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Mechanic</div>
+                    <div class="addon-price">+ $80 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-mechanic">
+                    <label for="addon-mechanic" class="toggle-label"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Price Display */
+#price-display-container {
+    position: relative;
+    text-align: right;
+}
+.price-final {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+.rental-price {
+    font-size: 2.5rem; /* Make the price larger */
+    font-weight: 900;
+    color: #000000;
+    line-height: 1;
+}
+.price-period {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    margin-left: 0.5rem;
+}
+.price-original-struck {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #999;
+    text-decoration: line-through;
+    height: 1.5rem; /* Reserve space */
+}
+.discount-tag {
+    background-color: #28a745;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.25rem;
+    height: 1.5rem; /* Reserve space */
+    visibility: hidden; /* Hide by default */
+}
+
+/* Floating Icon Animation */
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -160px) scale(1.5);
+    }
+}
+.floating-icon {
+    position: absolute;
+    z-index: 10;
+    animation: float-up 1.2s ease-out forwards;
+    pointer-events: none; /* So it doesn't interfere with clicks */
+}
+
+.floating-price-text {
+    position: absolute;
+    z-index: 10;
+    animation: float-up 1.5s ease-out forwards;
+    pointer-events: none; /* So it doesn't interfere with clicks */
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #28a745;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Add-ons Grid */
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.addon-item {
+    background: #FFFFFF;
+    border: 2px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Needed for positioning the floating icon */
+}
+
+.addon-item:hover {
+    border-color: #FF6B35;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.addon-item.selected {
+    border-color: #4CAF50;
+    background: #F1F8E9;
+}
+
+.addon-icon {
+    width: 48px;
+    height: 48px;
+    background: #F8F8F8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.addon-item:hover .addon-icon {
+    background: #FF6B35;
+    color: #FFFFFF;
+}
+
+.addon-item.selected .addon-icon {
+    background: #4CAF50;
+    color: #FFFFFF;
+}
+
+.addon-content {
+    flex: 1;
+}
+
+.addon-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.25rem;
+}
+
+.addon-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FF6B35;
+}
+
+.addon-price span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+}
+
+.addon-toggle {
+    position: relative;
+}
+
+.toggle-switch {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    display: block;
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    position: relative;
+}
+
+.toggle-label::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background: #4CAF50;
+}
+
+.toggle-switch:checked + .toggle-label::before {
+    transform: translateX(26px);
+}
+
+.addon-item:hover .toggle-label {
+    background: #FF6B35;
+}
+
+.addon-item:hover .toggle-switch:checked + .toggle-label {
+    background: #4CAF50;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #FFFFFF;
+    padding: 2.5rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #000;
+    margin: 0 0 0.5rem;
+}
+
+.modal-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0 0 2rem;
+}
+
+.modal-policy-content {
+    max-height: 50vh;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+    padding-right: 1rem; /* for scrollbar */
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-btn-primary, .modal-btn-secondary {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.modal-btn-primary {
+    background: #FF6B35;
+    color: #FFFFFF;
+}
+
+.modal-btn-primary:hover {
+    background: #E55A2B;
+}
+
+.modal-btn-secondary {
+    background: #E5E5E5;
+    color: #333;
+}
+
+.modal-btn-secondary:hover {
+    background: #CCCCCC;
+}
+
+/* Inquiry Button */
+.inquiry-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background: #FFFFFF;
+    color: #FF6B35;
+    border: 2px solid #FF6B35;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.inquiry-btn:hover {
+    background: #FF6B35;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+@media (max-width: 768px) {
+    .booking-panel {
+        width: 100%;
+    }
+    
+    .inquiry-btn {
+        margin-top: 0.25rem !important;
+    }
+    
+    .form-label {
+        font-size: 0.85rem !important;
+        line-height: 1.2;
+    }
+    
+    .datetime-input {
+        font-size: 0.9rem !important;
+        padding: 0.6rem !important;
+        min-height: 44px;
+        box-sizing: border-box;
+    }
+    
+    .datetime-input::-webkit-datetime-edit {
+        font-size: 0.9rem !important;
+    }
+    
+    .datetime-input::-webkit-calendar-picker-indicator {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .addon-title {
+        font-size: 1rem !important;
+    }
+    
+    .addon-price {
+        font-size: 0.9rem !important;
+    }
+    
+    .addon-price span {
+        font-size: 0.8rem !important;
+    }
+}
+</style>
+
+<!-- Rental Policy -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title">Rental Policy</h2>
+        <p class="section-subtitle">THINGS TO KEEP IN MIND</p>
+        
+        <div class="policy-grid">
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 6.75V5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v1.25M3 6.75V19.5A2.5 2.5 0 0 0 5.5 22h13a2.5 2.5 0 0 0 2.5-2.5V6.75M3 6.75h18" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <path d="M8 11h8M8 15h5" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="policy-text">Please treat the vehicle with care. Any damage, traffic fines, or violations are your responsibility.</div>
+            </div>
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a2 2 0 0 1 2 2v2h-4V4a2 2 0 0 1 2-2zm-7 6v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </div>
+                <div class="policy-text">A valid driver's license is required, and helmet use is mandatory for your safety.</div>
+            </div>
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 19V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <path d="M6 19h12M6 19v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <path d="M9 13h6" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="policy-text">You'll need to cover fuel costs during your ride — the rental doesn't include fuel.</div>
+            </div>
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <path d="M12 6v6l4 2" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="policy-text">Rental time starts at pickup. Please return the vehicle on time to avoid late charges.</div>
+            </div>
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <path d="M8 9v6M16 9v6" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="policy-text">We're unable to offer refunds once your rental starts, even for early returns or plan changes.</div>
+            </div>
+            <div class="policy-item">
+                <div class="policy-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10zm-5 8v4" stroke="#FF6B35" stroke-width="2" fill="none"/>
+                        <circle cx="12" cy="16" r="1" fill="#FF6B35"/>
+                        <path d="M8 8l8 8" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="policy-text">For everyone's safety, riding under the influence of alcohol or drugs is strictly not allowed.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Reviews -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title">Latest Reviews</h2>
+        <p class="section-subtitle">HEAR IT FROM THEM</p>
+        
+        <div class="reviews-container">
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Joel <span style='font-weight:400; color:#888; font-size:0.95em;'>(USA)</span></div>
+                    <div class="review-date">6 months ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    I rented a Royal Enfield from Bullet Basecamp, and had an excellent service and experience with the company. I got the bike for 14 days, and they gave me a great deal on the price - much cheaper than any other company I spoke with. They remained in constant communication with me throughout my trip and gave me great advice. After riding to Chitwan and Lumbini, I called back into Pokhara before heading to Mustang, and they gave the bike another free service before I headed into the mountains. Both the father and son who run the company are very knowledgeable and friendly, along with being skilled mechanics and honest people who provide a great service. 100% recommend using this company :)
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Marco L. <span style='font-weight:400; color:#888; font-size:0.95em;'>(Italy)</span></div>
+                    <div class="review-date">7 months ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    Best rental experience we had so far. We decided to rent cross-country bikes and luckily we found Rohan in Pokhara. He got us two really good serviced and almost new bikes. We had a week driving up to Muktinath without any problems and issues. I can only recommend this shop.
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Niklas Gopro <span style='font-weight:400; color:#888; font-size:0.95em;'>(Netherlands)</span></div>
+                    <div class="review-date">3 moonths ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    The best place to rent quality bikes in Pokhara, run by a great team. Highly recommend! We got Royal Enfield Himalayans for Mustang Valley
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Similar Motorbikes -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title">Similar Motorbikes in Pokhara</h2>
+        <p class="section-subtitle">A FEW WE THINK YOU MIGHT LIKE</p>
+        
+        <div class="similar-bikes-grid">
+            {% if other_bikes %}
+                {% for other_bike in other_bikes[:4] %}
+                <div class="similar-bike-card">
+                    <div style="background: #eee; border: 2px dashed #FF6B35; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="{{ url_for('static', filename=get_image_path(other_bike.image)) }}" alt="{{ other_bike.name }}" class="similar-bike-image">
+                    </div>
+                    <div class="similar-bike-content">
+                        <div class="similar-bike-location">
+                            <span class="location-flag">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,3V21L12,18L21,21V3H3M5,5H19V18.13L12,15.8L5,18.13V5Z"/>
+                                </svg>
+                            </span>
+                            <span class="location-text">Nepal, Pokhara</span>
+                            <div class="bike-rating">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <span>16 reviews</span>
+                            </div>
+                        </div>
+                        <h3 class="similar-bike-name">{{ other_bike.name }}</h3>
+                        <div class="similar-bike-pricing">
+                            <span class="price-from">from</span>
+                            <span class="price-amount">{{ other_bike.price_per_day }}</span>
+                            <span class="price-period">/day</span>
+                            <a href="{{ url_for('bike_detail', bike_name=other_bike.name|replace(' ', '-')|lower) }}" class="view-btn">VIEW</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Fallback bikes if no other bikes are available -->
+                {% set fallback_bikes = [
+                                {"name": "Royal Enfield Classic 350", "price": "$35", "image": "default-bike.jpg"},
+            {"name": "Royal Enfield Himalayan", "price": "$45", "image": "default-bike.jpg"},
+            {"name": "Royal Enfield Bullet 500", "price": "$40", "image": "default-bike.jpg"},
+            {"name": "Royal Enfield Meteor 350", "price": "$38", "image": "default-bike.jpg"}
+                ] %}
+                
+                {% for other_bike in fallback_bikes %}
+                <div class="similar-bike-card">
+                    <div style="background: #eee; border: 2px dashed #FF6B35; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="{{ url_for('static', filename=get_image_path(other_bike.image)) }}" alt="{{ other_bike.name }}" class="similar-bike-image">
+                    </div>
+                    <div class="similar-bike-content">
+                        <div class="similar-bike-location">
+                            <span class="location-flag">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,3V21L12,18L21,21V3H3M5,5H19V18.13L12,15.8L5,18.13V5Z"/>
+                                </svg>
+                            </span>
+                            <span class="location-text">Nepal, Pokhara</span>
+                            <div class="bike-rating">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <span>16 reviews</span>
+                            </div>
+                        </div>
+                        <h3 class="similar-bike-name">{{ other_bike.name }}</h3>
+                        <div class="similar-bike-pricing">
+                            <span class="price-from">from</span>
+                            <span class="price-amount">{{ other_bike.price }}</span>
+                            <span class="price-period">/day</span>
+                            <a href="{{ url_for('rentals') }}" class="view-btn">VIEW</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Schema.org JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ bike.name }} Rental",
+  "description": "{{ bike.description }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Royal Enfield"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ bike.price_per_day.replace('$', '').replace(',', '') }}",
+                "priceCurrency": "USD",
+    "availability": "{% if bike.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": "Bullet Basecamp"
+    }
+  },
+  "image": "{{ url_for('static', filename=get_image_path(bike.image), _external=True) }}"
+}
+</script>
+
+<!-- FAQ Section: Super Sexy, Premium SVGs -->
+<section class="content-section faq-section" style="background: #181818; color: #fff; padding: 4rem 0 3rem 0;">
+    <div class="container">
+        <h2 class="section-title" style="color: #FF6B35; text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 2rem; letter-spacing: -1px;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            {% set faqs = [
+                {"q": "Do I need a license to rent a motorcycle?", "a": "Yes. You must have:<br><ul style='margin:0 0 0 1.5rem;'><li>A valid motorcycle license, and</li><li>For international riders: an International Driving Permit (IDP) with motorcycle endorsement.</li></ul>", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/><path d='M3 11h18'/></svg>"},
+                {"q": "Is fuel included in the rental price?", "a": "Yes, fuel is included. You will receive the bike with a full tank petrol.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='2' width='12' height='20' rx='2'/><path d='M7 7h2'/><path d='M7 11h2'/><path d='M7 15h2'/><path d='M17 7v10a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2z'/></svg>"},
+                {"q": "What if I damage the bike?", "a": "Riders are responsible for any damage or mechanical issues caused by accidents, misuse, or negligence. We inspect bikes before and after every rental.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3 2 3h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z'/><path d='M12 10v6'/><path d='M9 13h6'/></svg>"},
+                {"q": "Can I take the rented motorcycle outside of Pokhara?", "a": "Yes, but you must inform us beforehand. For longer routes like Mustang, Manang, Rara, or Upper Mustang, we recommend guided tours due to permits and terrain challenges.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M2 12h20'/><path d='M12 2a15.3 15.3 0 0 1 0 20'/></svg>"},
+                {"q": "Do you offer one-way rentals?", "a": "Not at the moment. All bikes must be returned to our Bullet Basecamp garage in Pokhara.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 17l4-4-4-4'/><path d='M21 13H7a4 4 0 0 1 0-8h1'/></svg>"},
+                {"q": "Do I need to pay a security deposit?", "a": "Yes, we require a refundable security deposit and a copy of your ID or passport. The amount depends on the motorcycle model.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/></svg>"},
+                {"q": "Can I ride with a pillion (passenger)?", "a": "Yes! Riding with a pillion is allowed. We can also provide an extra helmet on request.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='9' cy='7' r='4'/><circle cx='17' cy='17' r='4'/><path d='M17 13v-2a4 4 0 0 0-4-4H9'/></svg>"},
+                {"q": "What happens if the bike breaks down?", "a": "We offer support within the Pokhara area. For remote rides, we recommend carrying essential tools or booking a guided tour with backup support.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='11' width='18' height='10' rx='2'/><path d='M7 11V7a5 5 0 0 1 10 0v4'/></svg>"},
+                {"q": "How do I book a motorcycle?", "a": "You can:<ul style='margin:0 0 0 1.5rem;'><li>Call or WhatsApp us directly</li><li>Message us on Instagram <b>@bulletbasecamp</b></li><li>Or visit our Google Business Profile or office in Lakeside, Pokhara</li></ul>", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/></svg>"}
+            ] %}
+            <div class="faq-accordion">
+                {% for faq in faqs %}
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span class="faq-q-icon" aria-hidden="true">{{ faq.icon|safe }}</span>
+                        <span class="faq-q-text">{{ faq.q }}</span>
+                        <span class="faq-toggle-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-a-text">{{ faq.a|safe }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.faq-section {
+    /* border-radius: 1.5rem; */
+    border-radius: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    margin-bottom: 0;
+    font-family: 'Inter', sans-serif;
+    background: #22223b;
+}
+.faq-accordion {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.faq-item {
+    background: #232323;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.faq-item.open {
+    box-shadow: 0 8px 32px rgba(255,107,53,0.15);
+}
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 1.5rem 2rem 1.5rem 1.5rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+}
+.faq-q-icon {
+    margin-right: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+.faq-toggle-icon {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+}
+.faq-item.open .faq-toggle-icon {
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: #232323;
+    color: #fff;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    padding: 0 2rem;
+}
+.faq-item.open .faq-answer {
+    padding: 1rem 2rem 2rem 2rem;
+    max-height: 400px;
+}
+.faq-a-text {
+    font-size: 1.1rem;
+    color: #eee;
+    line-height: 1.7;
+}
+@media (max-width: 600px) {
+    .faq-section { padding: 2rem 0 1.5rem 0; }
+    .faq-accordion { max-width: 100%; }
+    .faq-question { font-size: 1rem; padding: 1.2rem 1rem 1.2rem 1rem; }
+    .faq-answer { padding: 0 1rem; }
+    .faq-item.open .faq-answer { padding: 1rem 1rem 1.5rem 1rem; }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function() {
+            const isOpen = item.classList.contains('open');
+            faqItems.forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+});
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingPanel = document.querySelector('.booking-panel');
+    const daysInput = document.querySelector('.days-input');
+    const bikesInput = document.querySelector('.bikes-input');
+    const addonCheckboxes = document.querySelectorAll('.addon-item input[type="checkbox"]');
+    const priceDisplay = document.querySelector('.rental-price');
+    const pricePeriod = document.querySelector('.price-period');
+    const originalPriceDisplay = document.querySelector('.price-original-struck');
+    const discountTag = document.querySelector('.discount-tag');
+    const daysError = document.querySelector('.days-error');
+    const bikesError = document.querySelector('.bikes-error');
+
+    const basePrice = parseFloat(bookingPanel.dataset.basePrice) || 0;
+
+    function formatPrice(amount) {
+        return '$' + amount.toLocaleString('en-US');
+    }
+
+    function calculateAndUpdatePrice() {
+        const days = parseInt(daysInput.value) || 1;
+        const bikes = parseInt(bikesInput.value) || 1;
+        
+        // Calculate Add-ons total
+        let addonsTotal = 0;
+        addonCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const item = checkbox.closest('.addon-item');
+                const addonPrice = parseFloat(item.dataset.price) || 0;
+                addonsTotal += addonPrice;
+            }
+        });
+
+        const totalPerDay = basePrice + addonsTotal;
+        let totalPrice = totalPerDay * days * bikes;
+        let originalTotal = totalPrice;
+        let discountPercent = 0;
+
+        // Apply discounts
+        if (days >= 14) {
+            discountPercent = 15;
+        } else if (days >= 7) {
+            discountPercent = 10;
+        } else if (days >= 3) {
+            discountPercent = 5;
+        }
+
+        if (discountPercent > 0) {
+            totalPrice *= (1 - discountPercent / 100);
+            originalPriceDisplay.textContent = formatPrice(originalTotal);
+            discountTag.textContent = `${discountPercent}% OFF`;
+            discountTag.style.visibility = 'visible';
+        } else {
+            originalPriceDisplay.textContent = '';
+            discountTag.style.visibility = 'hidden';
+        }
+
+        priceDisplay.textContent = formatPrice(Math.round(totalPrice));
+        pricePeriod.textContent = days > 1 ? `/ ${days} days` : '/day';
+    }
+
+    function triggerFloatyPrice(addonItem) {
+        const addonPrice = parseFloat(addonItem.dataset.price) || 0;
+        if (addonPrice <= 0) return;
+
+        const floatyText = document.createElement('div');
+                    floatyText.textContent = `+$${addonPrice}`;
+        floatyText.className = 'floating-price-text';
+        
+        floatyText.style.top = '50%';
+        floatyText.style.left = '50%';
+
+        addonItem.appendChild(floatyText);
+
+        // Clean up the DOM after animation
+        floatyText.addEventListener('animationend', () => {
+            floatyText.remove();
+        });
+    }
+
+    // Event Listeners
+    daysInput.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value, 10);
+        if (value > 99) {
+            e.target.value = 99;
+            daysError.style.display = 'block';
+        } else {
+            daysError.style.display = 'none';
+        }
+        calculateAndUpdatePrice();
+    });
+    
+    bikesInput.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value, 10);
+        if (value > 10) {
+            e.target.value = 10;
+            bikesError.style.display = 'block';
+        } else {
+            bikesError.style.display = 'none';
+        }
+        calculateAndUpdatePrice();
+    });
+    addonCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            calculateAndUpdatePrice();
+            const addonItem = checkbox.closest('.addon-item');
+            if (checkbox.checked) {
+                triggerFloatyPrice(addonItem);
+            }
+        });
+    });
+
+    // Initial calculation on page load
+    calculateAndUpdatePrice();
+
+    // --- existing script ---
+    var bookBtn = document.getElementById('book-now-btn');
+    var inquiryBtn = document.getElementById('inquiry-btn');
+    
+    if (!bookBtn) return;
+
+    bookBtn.addEventListener('click', function() {
+        // Get bike name
+        var bikeName = document.querySelector('.bike-title')?.textContent?.trim() || '';
+        // Get number of days
+        var rentalDays = daysInput ? daysInput.value : '';
+        // Get number of bikes
+        var numberOfBikes = bikesInput ? bikesInput.value : '';
+        // Get pickup date and time
+        var pickupDateTime = document.querySelector('.datetime-input');
+        var pickupDateTimeValue = pickupDateTime ? pickupDateTime.value : '';
+
+        // Get selected add-ons
+        var selectedAddons = [];
+        var addonCheckboxesChecked = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+        addonCheckboxesChecked.forEach(function(checkbox) {
+            var addonItem = checkbox.closest('.addon-item');
+            var addonTitle = addonItem.querySelector('.addon-title').textContent.trim();
+            var addonPriceRaw = parseFloat(addonItem.dataset.price) || 0;
+            selectedAddons.push(`${addonTitle}|${addonPriceRaw}`);
+        });
+
+        // Get price details
+        const basePrice = parseFloat(bookingPanel.dataset.basePrice) || 0;
+        const finalPrice = priceDisplay.textContent;
+
+        // Build query string
+        var params = new URLSearchParams({
+            type: 'bike',
+            name: bikeName,
+            days: rentalDays,
+            bikes: numberOfBikes,
+            base_price: basePrice,
+            pickup_datetime: pickupDateTimeValue,
+            addons: selectedAddons.join(','),
+            final_price: finalPrice
+        });
+        // Redirect to checkout page with params
+        window.location.href = "{{ url_for('checkout') }}?" + params.toString();
+    });
+    
+    // Handle add-on selection visual feedback
+    var addonToggles = document.querySelectorAll('.addon-item input[type="checkbox"]');
+    addonToggles.forEach(function(toggle) {
+        toggle.addEventListener('change', function() {
+            var addonItem = this.closest('.addon-item');
+            if (this.checked) {
+                addonItem.classList.add('selected');
+            } else {
+                addonItem.classList.remove('selected');
+            }
+        });
+        
+        // Make the whole card clickable
+        var addonItem = toggle.closest('.addon-item');
+        addonItem.addEventListener('click', function(e) {
+            // Don't trigger if clicking on the toggle itself
+            if (e.target !== toggle && e.target !== toggle.nextElementSibling) {
+                toggle.checked = !toggle.checked;
+                toggle.dispatchEvent(new Event('change'));
+            }
+        });
+    });
+
+    // Inquiry button functionality
+    if (inquiryBtn) {
+        inquiryBtn.addEventListener('click', function() {
+            // Get bike name
+            var bikeName = document.querySelector('.bike-title')?.textContent?.trim() || '';
+            // Get number of days
+            var rentalDays = daysInput ? daysInput.value : '';
+            // Get number of bikes
+            var numberOfBikes = bikesInput ? bikesInput.value : '';
+            // Get pickup date and time
+            var pickupDateTime = document.querySelector('.datetime-input');
+            var pickupDateTimeValue = pickupDateTime ? pickupDateTime.value : '';
+
+            // Get selected add-ons
+            var selectedAddons = [];
+            var addonCheckboxesChecked = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+            addonCheckboxesChecked.forEach(function(checkbox) {
+                var addonItem = checkbox.closest('.addon-item');
+                var addonTitle = addonItem.querySelector('.addon-title').textContent.trim();
+                var addonPriceRaw = parseFloat(addonItem.dataset.price) || 0;
+                selectedAddons.push(`${addonTitle}|${addonPriceRaw}`);
+            });
+
+            // Build inquiry message
+            var inquiryMessage = `Hi, I'm interested in the ${bikeName} bike rental. I have some questions:\n\n`;
+            inquiryMessage += `Rental Details:\n`;
+            inquiryMessage += `- Number of days: ${rentalDays}\n`;
+            inquiryMessage += `- Number of bikes: ${numberOfBikes}\n`;
+            inquiryMessage += `- Pickup date & time: ${pickupDateTimeValue}\n`;
+            
+            if (selectedAddons.length > 0) {
+                inquiryMessage += `- Selected add-ons: ${selectedAddons.map(addon => addon.split('|')[0]).join(', ')}\n`;
+            }
+            
+            inquiryMessage += `\nPlease let me know about availability, pricing, and any other details I should know.`;
+
+            // Build query string for contact form
+            var params = new URLSearchParams({
+                bike: bikeName,
+                service: 'rentals',
+                message: inquiryMessage
+            });
+
+            // Redirect to contact page with inquiry details
+            window.location.href = "{{ url_for('contact') }}?" + params.toString() + "#contact-form";
+        });
+    }
+});
+</script>
+{% endblock %} 

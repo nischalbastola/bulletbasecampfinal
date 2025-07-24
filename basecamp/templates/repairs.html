@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}Motorcycle Repair Shop Pokhara - Royal Enfield Service, Oil Change, Puncture Repair Lakeside{% endblock %}
+{% block description %}Best motorcycle repair shop in Pokhara Lakeside. Royal Enfield servicing, oil change, puncture repair, emergency service. Expert mechanic open now. 24/7 breakdown service Pokhara.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/repairs-hero.mp4') }}" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+    </video>
+    
+    <div class="hero-content">
+        <p class="hero-tagline">Pokhara's Best Motorcycle Workshop</p>
+        <h1 class="hero-title">The Basecamp Workshop</h1>
+        <p class="body-text" style="color: #FFFFFF; font-size: 1.2rem; margin: 1.5rem 0;">
+            Wrenched right. Tuned tight. Back on the road, fast.
+        </p>
+        
+        <div class="hero-buttons">
+            <a href="#services" class="btn-primary">Pokhara Services</a>
+                            <a href="{{ url_for('contact') }}?service=repairs#contact-form" class="btn-secondary">Emergency Repair</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="content-section" id="services">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Repair Services</h2>
+        <p class="body-text" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+            From routine maintenance to major overhauls, our certified technicians provide comprehensive motorcycle service using genuine parts and modern equipment.
+        </p>
+        
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/engineservice.jpg') }}" alt="Engine Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Engine Service</h3>
+                    <p class="body-text">Complete engine diagnostics, oil changes, filter replacements, and performance tuning for optimal performance.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Oil & filter change</li>
+                        <li class="body-text">Engine diagnostics</li>
+                        <li class="body-text">Valve adjustments</li>
+                        <li class="body-text">Performance tuning</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/aboutgal8.jpg') }}" alt="Electrical Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Electrical System</h3>
+                    <p class="body-text">Complete electrical system diagnosis and repair including lighting, ignition, and charging systems.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Battery testing & replacement</li>
+                        <li class="body-text">Charging system repair</li>
+                        <li class="body-text">Lighting system service</li>
+                        <li class="body-text">Wiring harness repair</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/brakeservice.jpg') }}" alt="Brake Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Brake System</h3>
+                    <p class="body-text">Comprehensive brake system service ensuring optimal stopping power and safety on every ride.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Brake pad replacement</li>
+                        <li class="body-text">Brake fluid change</li>
+                        <li class="body-text">Brake line inspection</li>
+                        <li class="body-text">Disc/drum service</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/transmissionservice.jpg') }}" alt="Transmission Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Transmission</h3>
+                    <p class="body-text">Clutch adjustments, gear box service, and transmission repairs for smooth shifting and performance.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Clutch adjustment</li>
+                        <li class="body-text">Gear box service</li>
+                        <li class="body-text">Chain & sprocket service</li>
+                        <li class="body-text">Clutch plate and pressure plate</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/aboutgal9.jpg') }}" alt="Suspension Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Suspension</h3>
+                    <p class="body-text">Front and rear suspension service, shock absorber replacement, and handling optimization.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Fork service & seals</li>
+                        <li class="body-text">Shock absorber service</li>
+                        <li class="body-text">Suspension adjustment</li>
+                        <li class="body-text">Handle cone greasing/replacement</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/bikeservice.jpg') }}" alt="Tires & Wheels Service" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Tires & Wheels</h3>
+                    <p class="body-text">Tire installation, balancing, wheel alignment, and puncture repairs for safe riding and better travels.</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li class="body-text">Tire installation</li>
+                        <li class="body-text">Wheel balancing</li>
+                        <li class="body-text">Wheel and sprocket bearing</li>
+                        <li class="body-text">Spoke tensioning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Why Choose Our Service</h2>
+        
+        <div class="category-grid" style="margin-top: 3rem;">
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">30+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Years Experience</h3>
+                <p class="body-text">Three decades of Royal Enfield expertise and adventure planning experience in the Himalayas.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Certified Technicians</h3>
+                <p class="body-text">Our mechanics are Royal Enfield certified with years of experience working on these classic machines.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Transparent Pricing</h3>
+                <p class="body-text">No hidden fees or surprise charges. Get upfront pricing estimates before any work begins.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Genuine Parts</h3>
+                <p class="body-text">We use only authentic Royal Enfield parts and high-quality aftermarket components for lasting repairs.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Warranty</h3>
+                <p class="body-text">All our work comes with a comprehensive warranty. We stand behind our service quality.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Customer Satisfaction</h3>
+                <p class="body-text">Perfect customer satisfaction rate with personalized service and unforgettable adventure experiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Reviews -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title">Latest Reviews</h2>
+        <p class="section-subtitle">HEAR IT FROM THEM</p>
+        <div class="reviews-container">
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Ryan Kaji <span style='font-weight:400; color:#888; font-size:0.95em;'>(Nepal)</span></div>
+                    <div class="review-date">a year ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    Raju, the mechanic and owner of this place, is very skilled in his craft. With decades of experience, he understands motorbikes and everything about it. Very trustworthy and friendly. I have brought my Himalayan here since I got it about a year and a half ago. He has taken care of it very well. Would recommend!
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Avinash Chakravarthi <span style='font-weight:400; color:#888; font-size:0.95em;'>(India)</span></div>
+                    <div class="review-date">6 months ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    It’s now known as Bullet Surgery huge shoutout to Raju for his deep knowledge and passion for bikes. He helped me fix up my Honda CB350 RS!
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Martin Bellman<span style='font-weight:400; color:#888; font-size:0.95em;'>(Germany)</span></div>
+                    <div class="review-date">2 year ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    I rode all the way from Germany to Nepal on my Honda Transalp. Raju, Rohan and Surish are the best mechanics I met on my entire trip. Especially for heavy motorcycles I strongly recommend them.
+                    They were able to repair even my cylinders gasket among many other things :)
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Eric Poirier <span style='font-weight:400; color:#888; font-size:0.95em;'>(USA)</span></div>
+                    <div class="review-date">6 years ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    Good and fast service, he knows what he doing. Also extremely honest, I struggled with Nepal money (all bills look similar) so I gave him 500 roupies more than the total of my invoice. He immediately notice and give me back. This kind of behaviour never lies about a man! Respect! 🙏🏻 …
+                </div>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-name">Immi Moyses <span style='font-weight:400; color:#888; font-size:0.95em;'>(Australia)</span></div>
+                    <div class="review-date">1 year ago</div>
+                    <div class="review-stars">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text">
+                    Had a battery and starter motor fixed on my CB150 here. They don’t sell these bikes in Nepal and Raju was able to source parts and fix it within the day. Great technical knowledge and great milk tea
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Schedule Your Service</h2>
+        <p class="body-text" style="font-size: 1.1rem; margin: 2rem 0;">
+            Get a free estimate for your motorcycle service. Contact us to schedule an appointment.
+        </p>
+        
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}?service=repairs#contact-form" class="btn-primary">Get Free Estimate</a>
+            <a href="tel:+977-9864434112" class="btn-secondary" style="color: #000000; border-color: #000000;">Call Now</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %} 

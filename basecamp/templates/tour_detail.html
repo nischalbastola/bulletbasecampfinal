@@ -1,0 +1,1564 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tour.title }} - Himalayan Motorcycle Tour - Bullet Basecamp{% endblock %}
+{% block description %}Book the {{ tour.title }} tour from Pokhara. {{ tour.description }} Guided Himalayan motorcycle adventures with Bullet Basecamp.{% endblock %}
+
+{% block content %}
+<!-- Hero Section (Home Page Style) -->
+<section class="hero-section" style="min-height: 100vh; position: relative; display: flex; align-items: center; padding: 2rem; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <img src="{{ url_for('static', filename=get_image_path(tour.image)) }}" alt="{{ tour.title }} tour thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.55);">
+                    </div>
+    <div class="hero-content" style="position: relative; z-index: 2; text-align: center; color: #fff; max-width: 700px; margin-left: auto; margin-right: auto;">
+        <p class="hero-tagline">Pokhara's Premier Motorcycle Tour</p>
+        <h1 class="hero-title">{{ tour.title }}</h1>
+        
+        <div class="hero-buttons" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-left: auto; margin-right: auto;">
+            <a href="#booking-form-panel" class="btn-primary">Book This Tour</a>
+            <a href="#booking-form-panel" class="btn-secondary">Inquiry</a>
+        </div>
+    </div>
+</section>
+
+<!-- Info Bar Section -->
+<section class="info-bar-section" style="background: #fff; padding: 2rem 0;">
+            <div class="container" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; max-width: 1200px; margin: 0 auto; align-items: end;">
+                <!-- Duration -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#FF6B35" stroke-width="2"/><path d="M16 3v4M8 3v4" stroke="#FF6B35" stroke-width="2"/><path d="M3 9h18" stroke="#FF6B35" stroke-width="2"/><rect x="7" y="13" width="4" height="4" rx="1" fill="#FF6B35"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Duration:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_duration }}</div>
+                </div>
+                <!-- Per Day -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><circle cx="12" cy="12" r="10" stroke="#FF6B35" stroke-width="2"/><path d="M12 6v6l4 2" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Per Day:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_per_day }}</div>
+                </div>
+                <!-- Difficulty Level -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><circle cx="12" cy="12" r="10" stroke="#FF6B35" stroke-width="2"/><path d="M12 12c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#FF6B35"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Difficulty:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_difficulty }}</div>
+                        </div>
+                <!-- Maximum Altitude -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><path d="M12 19V5M12 5l-7 7M12 5l7 7" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Max Altitude:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_altitude }}</div>
+                    </div>
+                <!-- Group Size -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><circle cx="8" cy="12" r="4" stroke="#FF6B35" stroke-width="2"/><circle cx="16" cy="12" r="4" stroke="#FF6B35" stroke-width="2"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Group Size:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_group_size }}</div>
+                                    </div>
+                <!-- Trip Cost (no Book Now button) -->
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0;">
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style="margin-bottom: 0.15rem;"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#FF6B35" stroke-width="2"/><path d="M7 9h10M7 13h6" stroke="#FF6B35" stroke-width="2"/></svg>
+            <div style="font-weight: 700; font-size: 0.98rem; color: #222; margin-bottom: 0.05rem;">Trip Cost:</div>
+            <div style="font-size: 0.97rem; font-weight: 500; color: #666;">{{ tour.keyinfo_trip_cost }}</div>
+                            </div>
+                        </div>
+            <style>
+            @media (max-width: 900px) {
+                .info-bar-section .container {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1.2rem !important;
+                }
+            }
+            @media (max-width: 600px) {
+                .info-bar-section .container {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+            </style>
+</section>
+
+<!-- About & Key Informations Section -->
+<section class="content-section" style="background: #fff; color: #222; padding: 4rem 0 2rem 0;">
+    <div class="container" style="max-width: 1200px; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        <!-- About Left -->
+        <div style="flex: 1 1 350px; min-width: 320px; max-width: 540px;">
+            <h2 class="section-title">About the tour</h2>
+            <p class="section-subtitle">TOUR OVERVIEW</p>
+            <div class="body-text" style="font-size: 1.15rem; font-weight: 500; line-height: 1.7; color: #222; margin-top: 2rem;">
+                {% for paragraph in tour.description.split('\n') %}
+                    {% if paragraph.strip() %}
+                        <p style="margin-bottom: 1rem;">{{ paragraph.strip() }}</p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                </div>
+        <!-- Some Highlights Right -->
+        <div style="flex: 1 1 350px; min-width: 320px; max-width: 540px;">
+            <h2 class="section-title">Some Highlights</h2>
+            <p class="section-subtitle">WHAT TO EXPECT</p>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 1.08rem; font-weight: 500; margin-top: 2rem;">
+                {% for highlight in tour.highlights %}
+                <li style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                    <span style="margin-right: 0.7rem; display: flex; align-items: center; margin-top: 0.2rem;">
+                        <svg width='20' height='20' fill='none' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='#FF6B35'/><path d='M10 12.5l2 2 4-4' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>
+                        </span>
+                    <span>{{ highlight }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+                    </div>
+    </div>
+</section>
+
+
+
+<!-- Testimonials & Booking Panel Combined Section -->
+<section class="testimonials-booking-section" id="booking-panel" style="background: #fff; padding: 2.5rem 0 2rem 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; gap: 2.5rem; align-items: flex-start; flex-wrap: wrap;">
+        <!-- Included/Excluded Left -->
+        <div style="flex: 2 1 350px; min-width: 320px;">
+            <h2 class="section-title">What's Included</h2>
+            <p class="section-subtitle">ALL THE GOOD STUFF</p>
+            <div class="included-excluded-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                <!-- Included -->
+                <div class="included-section">
+                    <h3 style="color: #28a745; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem;">
+                            <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                            </svg>
+                        Included
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; color: #1a1a1a; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); padding: 0.8rem; border-radius: 6px; border-left: 3px solid #28a745; box-shadow: 0 1px 4px rgba(40, 167, 69, 0.1);">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: 900; font-size: 1.2rem;">★</span>
+                            <span style="font-weight: 600;">Government Certified Tour Guide</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; color: #1a1a1a; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); padding: 0.8rem; border-radius: 6px; border-left: 3px solid #28a745; box-shadow: 0 1px 4px rgba(40, 167, 69, 0.1);">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: 900; font-size: 1.2rem;">★</span>
+                            <span style="font-weight: 600;">Pro Mechanic (Since 1990s)</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; color: #1a1a1a; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); padding: 0.8rem; border-radius: 6px; border-left: 3px solid #28a745; box-shadow: 0 1px 4px rgba(40, 167, 69, 0.1);">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: 900; font-size: 1.2rem;">★</span>
+                            <span style="font-weight: 600;">4x4 Support Vehicle</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; color: #1a1a1a; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); padding: 0.8rem; border-radius: 6px; border-left: 3px solid #28a745; box-shadow: 0 1px 4px rgba(40, 167, 69, 0.1);">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: 900; font-size: 1.2rem;">★</span>
+                            <span style="font-weight: 600;">Expert Sweeper</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; color: #1a1a1a; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); padding: 0.8rem; border-radius: 6px; border-left: 3px solid #28a745; box-shadow: 0 1px 4px rgba(40, 167, 69, 0.1);">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: 900; font-size: 1.2rem;">★</span>
+                            <span style="font-weight: 600; font-size: 1.15rem;">Medical support</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Premium motorbike with fuel for the entire trip</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Helmets and gloves on request</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Quality hotels with single-sharing rooms</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Satellite phone for remote area safety</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Daily meals: breakfast, lunch, and dinner</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>ACAP and restrcited area permit and TIMS card covered</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Historic and cultural site visits with local guides</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>English-speaking tour leader throughout</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Free water bottles throughout the ride</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #28a745; font-weight: bold;">✓</span>
+                            <span>Historically significant caves and sky-burial sites visit</span>
+                        </li>
+                    </ul>
+                    </div>
+                <!-- Excluded -->
+                <div class="excluded-section">
+                    <h3 style="color: #dc3545; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem;">
+                            <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                            </svg>
+                        Not Included
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #dc3545; font-weight: bold;">✗</span>
+                            <span>Alcohol, laundry, and personal expenses</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #dc3545; font-weight: bold;">✗</span>
+                            <span>Rider-caused motorbike damage</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #dc3545; font-weight: bold;">✗</span>
+                            <span>International flights</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #dc3545; font-weight: bold;">✗</span>
+                            <span>Nepal visa fees</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; margin-bottom: 0.8rem; font-size: 1rem; color: #333;">
+                            <span style="margin-right: 0.7rem; color: #dc3545; font-weight: bold;">✗</span>
+                            <span>Extra costs not listed above</span>
+                        </li>
+                    </ul>
+                        </div>
+                    </div>
+        </div>
+        <!-- Booking Panel Right -->
+        <div style="flex: 1 1 320px; min-width: 320px; max-width: 540px;" id="booking-form-panel">
+            <div class="booking-panel" data-base-price="{{ tour.price.replace('$', '').replace(',', '') }}" data-tour-duration="{{ tour.duration }}">
+                <div class="rental-info">
+                    <div id="price-display-container">
+                        <div class="price-original-struck"></div>
+                        <div class="price-final">
+                            <span class="rental-price">{{ tour.price }}</span>
+                            <span class="price-period">/rider</span>
+                        </div>
+                        <div class="discount-tag"></div>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                                </svg>
+                                START DATE
+                            </label>
+                            <input type="date" class="start-date-input" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 4px; font-family: 'Inter', sans-serif; background: #FFFFFF;">
+                        </div>
+                        <div class="form-group">
+                            <label>PICKUP TIME</label>
+                            <select class="time-input">
+                                <option value="09:00">9:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom; margin-right: 0.5rem;">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                                NUMBER OF RIDERS
+                            </label>
+                            <input type="number" class="riders-input" min="1" max="20" value="1" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 4px; font-family: 'Inter', sans-serif; background: #FFFFFF;">
+                            <div class="riders-error" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.5rem; display: none;">Sorry, limit is 20 riders per booking.</div>
+                            <div class="discount-info" style="color: #28a745; font-size: 0.9rem; margin-top: 0.5rem; font-weight: 500;">
+                                3+ riders: 5% off<br>
+                                7+ riders: 10% off<br>
+                                14+ riders: 15% off
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="book-now-btn" id="book-now-btn">BOOK NOW</button>
+                    <button type="button" class="inquiry-btn" id="inquiry-btn">INQUIRY</button>
+                    <div class="booking-guarantee">
+                        Best price <strong>guaranteed.</strong>
+                    </div>
+                    <div class="discount-tiers-info" style="margin: 1.2rem 0 0 0; text-align: center; color: #28a745; font-weight: 700; font-size: 1.08rem; background: #f8fff8; border-radius: 0.7rem; padding: 0.8rem 1.2rem; box-shadow: 0 2px 12px rgba(40,167,69,0.07);">
+                        <span style="display: block; margin-bottom: 0.2rem;">Group Discounts:</span>
+                        <span style="display: block;">5-6 riders: 5% off &nbsp;|&nbsp; 7-8 riders: 10% off</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+    @media (max-width: 900px) {
+        .testimonials-booking-section .container {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .testimonials-booking-section .container > div {
+            min-width: 0 !important;
+            max-width: 100% !important;
+        }
+    }
+    </style>
+</section>
+
+<style>
+/* Price Display */
+#price-display-container {
+    position: relative;
+    text-align: right;
+}
+.price-final {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+.rental-price {
+    font-size: 2.5rem; /* Make the price larger */
+    font-weight: 900;
+    color: #000000;
+    line-height: 1;
+}
+.price-period {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    margin-left: 0.5rem;
+}
+.price-original-struck {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #999;
+    text-decoration: line-through;
+    height: 1.5rem; /* Reserve space */
+}
+.discount-tag {
+    background-color: #28a745;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.25rem;
+    height: 1.5rem; /* Reserve space */
+    visibility: hidden; /* Hide by default */
+}
+
+/* Floating Icon Animation */
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -160px) scale(1.5);
+    }
+}
+.floating-icon {
+    position: absolute;
+    z-index: 10;
+    animation: float-up 1.2s ease-out forwards;
+    pointer-events: none; /* So it doesn't interfere with clicks */
+}
+
+.floating-price-text {
+    position: absolute;
+    z-index: 10;
+    animation: float-up 1.5s ease-out forwards;
+    pointer-events: none; /* So it doesn't interfere with clicks */
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #28a745;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Add-ons Grid */
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.addon-item {
+    background: #FFFFFF;
+    border: 2px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Needed for positioning the floating icon */
+}
+
+.addon-item:hover {
+    border-color: #FF6B35;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.addon-item.selected {
+    border-color: #4CAF50;
+    background: #F1F8E9;
+}
+
+.addon-icon {
+    width: 48px;
+    height: 48px;
+    background: #F8F8F8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.addon-item:hover .addon-icon {
+    background: #FF6B35;
+    color: #FFFFFF;
+}
+
+.addon-item.selected .addon-icon {
+    background: #4CAF50;
+    color: #FFFFFF;
+}
+
+.addon-content {
+    flex: 1;
+}
+
+.addon-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.25rem;
+}
+
+.addon-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FF6B35;
+}
+
+.addon-price span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+}
+
+.addon-toggle {
+    position: relative;
+}
+
+.toggle-switch {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    display: block;
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    position: relative;
+}
+
+.toggle-label::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background: #4CAF50;
+}
+
+.toggle-switch:checked + .toggle-label::before {
+    transform: translateX(26px);
+}
+
+.addon-item:hover .toggle-label {
+    background: #FF6B35;
+}
+
+.addon-item:hover .toggle-switch:checked + .toggle-label {
+    background: #4CAF50;
+}
+
+/* Inquiry Button */
+.inquiry-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background: #FFFFFF;
+    color: #FF6B35;
+    border: 2px solid #FF6B35;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.inquiry-btn:hover {
+    background: #FF6B35;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+@media (max-width: 768px) {
+    .booking-panel {
+        width: 100%;
+    }
+    
+    .inquiry-btn {
+        margin-top: 0.25rem !important;
+    }
+}
+
+/* Add-ons Grid Styles */
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.addon-item {
+    background: #FFFFFF;
+    border: 2px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.addon-item:hover {
+    border-color: #FF6B35;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.15);
+    transform: translateY(-2px);
+}
+
+.addon-item:active {
+    transform: translateY(0);
+}
+
+.addon-item.selected {
+    border-color: #28a745;
+    background: #F1F8E9;
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.15);
+}
+
+.addon-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8F8F8;
+    border-radius: 8px;
+    color: #FF6B35;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.addon-item:hover .addon-icon {
+    background: #FF6B35;
+    color: #FFFFFF;
+    transform: scale(1.1);
+}
+
+.addon-item.selected .addon-icon {
+    background: #28a745;
+    color: #FFFFFF;
+}
+
+.addon-content {
+    flex: 1;
+}
+
+.addon-title {
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.addon-price {
+    font-size: 0.875rem;
+    color: #FF6B35;
+    font-weight: 600;
+}
+
+.addon-price span {
+    color: #666;
+    font-weight: 400;
+}
+
+.addon-toggle {
+    margin-left: auto;
+}
+
+.toggle-switch {
+    width: 50px;
+    height: 25px;
+    appearance: none;
+    background: #E5E5E5;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-switch:checked {
+    background: #FF6B35;
+}
+
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toggle-switch:checked::before {
+    transform: translateX(25px);
+}
+
+/* Mobile Responsive for Add-ons */
+@media (max-width: 768px) {
+    .addons-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .addon-item {
+        padding: 1rem;
+    }
+    
+    .addon-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    .addon-title {
+        font-size: 1rem;
+    }
+}
+
+/* Floating Price Animation */
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -160px) scale(1.5);
+    }
+}
+
+.floating-price-text {
+    position: absolute;
+    z-index: 10;
+    animation: float-up 1.5s ease-out forwards;
+    pointer-events: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #28a745;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+</style>
+
+<!-- Available Add-ons Section -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title">Available Add-ons</h2>
+        <p class="section-subtitle">NEED A LITTLE EXTRA?</p>
+        
+        <div class="addons-grid">
+            <div class="addon-item" data-price="99">
+                <div class="addon-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Professional Cameraman</div>
+                    <div class="addon-price">+ $99 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-photographer">
+                    <label for="addon-photographer" class="toggle-label"></label>
+                </div>
+            </div>
+            <div class="addon-item" data-price="150">
+                <div class="addon-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                    </svg>
+                </div>
+                <div class="addon-content">
+                    <div class="addon-title">Professional Doctor with a Medical License</div>
+                    <div class="addon-price">+ $150 <span>/day</span></div>
+                </div>
+                <div class="addon-toggle">
+                    <input type="checkbox" class="toggle-switch" id="addon-medical">
+                    <label for="addon-medical" class="toggle-label"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Find Us In Action Section -->
+<section class="content-section" style="background: #F8F8F8; padding: 4rem 0; position: relative; overflow: hidden;">
+    <!-- Animated Background Elements -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;">
+        <div style="position: absolute; top: 10%; left: 10%; width: 100px; height: 100px; border: 2px solid #FF6B35; border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; top: 60%; right: 15%; width: 80px; height: 80px; border: 2px solid #FF6B35; border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+        <div style="position: absolute; bottom: 20%; left: 20%; width: 60px; height: 60px; border: 2px solid #FF6B35; border-radius: 50%; animation: float 7s ease-in-out infinite;"></div>
+    </div>
+    
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="color: #FF6B35; font-size: 3rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);">
+                Find Us In Action
+            </h2>
+            <p class="section-subtitle" style="color: #333; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 2px;">
+                WITNESS THE ADVENTURE
+            </p>
+            <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF6B35, #FF8C42); margin: 0 auto; border-radius: 2px;"></div>
+        </div>
+        
+        <div style="max-width: 900px; margin: 0 auto; position: relative;">
+            <!-- Video Container with Sexy Styling -->
+            <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); transform: perspective(1000px) rotateX(5deg); transition: all 0.3s ease;">
+                <!-- Glowing Border Effect -->
+                <div style="position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, #FF6B35, #FF8C42, #FF6B35); border-radius: 22px; z-index: -1; animation: glow 3s ease-in-out infinite alternate;"></div>
+                
+                <!-- Video Frame -->
+                <div style="position: relative; background: #000; border-radius: 18px; overflow: hidden;">
+                    <iframe 
+                        width="100%" 
+                        height="500" 
+                        src="https://www.youtube.com/embed/ky_msNT-CG8?autoplay=1&mute=1&loop=1&playlist=ky_msNT-CG8&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=white&theme=dark" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        id="action-video"
+                        style="display: block; border-radius: 18px;">
+                    </iframe>
+                    
+                    <!-- Play Button Overlay (hidden when autoplay works) -->
+                    <div id="play-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;">
+                        <div style="width: 80px; height: 80px; background: rgba(255, 107, 53, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(255, 107, 53, 0.4);">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff">
+                                <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Action Badges -->
+                <div style="position: absolute; top: -15px; right: -15px; background: linear-gradient(135deg, #FF6B35, #FF8C42); color: white; padding: 0.5rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4); transform: rotate(5deg);">
+                    🔥 LIVE ACTION
+                </div>
+                <div style="position: absolute; bottom: -15px; left: -15px; background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 0.5rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 16px rgba(40, 167, 69, 0.4); transform: rotate(-5deg);">
+                    🎬 HD QUALITY
+                </div>
+            </div>
+            
+            <!-- Call to Action Below Video -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: #333; font-size: 1.1rem; margin-bottom: 1.5rem; opacity: 0.9;">
+                    Experience the thrill of motorcycle adventures in Nepal's most breathtaking landscapes
+                </p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #FF6B35; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                        </svg>
+                        <span>Epic Routes</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #FF6B35; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        <span>Expert Guides</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #FF6B35; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                        </svg>
+                        <span>Premium Bikes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @keyframes glow {
+        0% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+        100% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.8), 0 0 60px rgba(255, 107, 53, 0.3); }
+    }
+    
+    @media (max-width: 768px) {
+        .content-section h2.section-title {
+            font-size: 2rem !important;
+        }
+        iframe {
+            height: 300px !important;
+        }
+    }
+    </style>
+    
+    <script>
+    // Simple video autoplay with fallback
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('action-video');
+        const playOverlay = document.getElementById('play-overlay');
+        
+        // Hide play overlay after video loads
+        if (video) {
+            video.addEventListener('load', function() {
+                setTimeout(() => {
+                    if (playOverlay) {
+                        playOverlay.style.opacity = '0';
+                    }
+                }, 1500);
+            });
+        }
+        
+        // Fallback: If video doesn't work, make overlay clickable
+        setTimeout(() => {
+            if (playOverlay) {
+                playOverlay.style.opacity = '1';
+                playOverlay.style.pointerEvents = 'auto';
+                playOverlay.style.cursor = 'pointer';
+                playOverlay.onclick = function() {
+                    window.open('https://www.youtube.com/watch?v=ky_msNT-CG8', '_blank');
+                };
+            }
+        }, 2000);
+    });
+    </script>
+</section>
+
+<!-- Tour Policy Section -->
+<section class="content-section" style="clear: both; background: #f8f8f8; padding: 3.5rem 0 2.5rem 0;">
+    <div class="container">
+        <h2 class="section-title">Tour Policy</h2>
+        <p class="section-subtitle">THINGS TO KEEP IN MIND</p>
+        <div class="policy-grid" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start; align-items: stretch;">
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                    </svg>
+                </div>
+                <div class="policy-text">
+                    <strong>1. Voluntary Participation</strong><br>
+                    All participants are joining this tour by choice, fully aware of the nature and conditions of the journey.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>2. Inherent Risks</strong><br>
+                    This tour involves risk, including but not limited to accidents, mechanical failures, and unpredictable weather. By joining, you accept full responsibility for these risks, including the possibility of serious injury or death.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12,12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#FF6B35"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>3. Personal Responsibility</strong><br>
+                    Participants must maintain control of their motorcycle, follow safety protocols, and wear protective gear at all times throughout the tour.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>4. Mechanical Breakages</strong><br>
+                    Any damage caused to the motorcycle due to the rider's fault must be paid for by the participant. This may include covering the full cost of repairs or the vehicle itself.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>5. Medical Fitness</strong><br>
+                    You must be physically and medically fit to undertake this tour, including riding for long hours and handling altitude or rugged terrain.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A3,3 0 0,1 15,5V9A1,1 0 0,1 14,10H13V22H11V10H10A1,1 0 0,1 9,9V5A3,3 0 0,1 12,2M12,4A1,1 0 0,0 11,5V8H13V5A1,1 0 0,0 12,4Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>6. Emergency Situations</strong><br>
+                    In emergencies, the organizers reserve the right to take necessary actions on your behalf. You are responsible for any emergency-related expenses incurred during the tour.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3,17.25V21H6.75L17.81,9.94L14.06,6.19L3,17.25M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>7. Travel Insurance</strong><br>
+                    Travel insurance covering accidents, evacuation, medical care, and cancellations is strongly recommended for all participants.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>8. Liability Waiver</strong><br>
+                    By participating in this tour, you agree to waive all legal claims against the organizers for any injury, damage, loss, or inconvenience experienced during the trip.
+                </div>
+            </div>
+            <div class="policy-item" style="background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2.2rem 1.7rem; flex: 1 1 320px; min-width: 260px; max-width: 420px; display: flex; flex-direction: column; align-items: flex-start; margin: 0;">
+                <div class="policy-icon" style="margin-bottom: 1.1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="#FF6B35" stroke-width="2" fill="none"/><path d="M9 12l2 2 4-4" stroke="#FF6B35" stroke-width="2" fill="none"/></svg>
+                </div>
+                <div class="policy-text">
+                    <strong>9. Code of Conduct</strong><br>
+                    All participants are expected to respect local culture, laws, and fellow riders. Disruptive or unsafe behavior may result in removal from the tour without refund.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title">Latest Reviews</h2>
+        <p class="section-subtitle">HEAR IT FROM THEM</p>
+        <div class="reviews-container" style="margin-top: 2rem;">
+            <div class="review-item" style="background: #FFFFFF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <div>
+                        <div class="reviewer-name" style="font-weight: 700; color: #222; font-size: 1.1rem;">Will Naughton <span style='font-weight:400; color:#888; font-size:0.95em;'>(USA)</span></div>
+                        <div class="review-date" style="color: #666; font-size: 0.9rem;">1 month ago</div>
+                    </div>
+                    <div class="review-stars" style="display: flex; gap: 0.2rem;">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text" style="color: #333; line-height: 1.6; font-size: 1rem;">
+                    We had a FANTASTIC motorbike tour to Upper Mustang with Rohan. Look no further! I can't recommend Bullet Basecamp enough. We started our trip with a guide, and finished with a friend.
+
+                    Rohan is the man you want for your tour - whether you're looking for off-road trails, off-the-beaten track experiences, or cultural immersion. He is incredibly easy-going, patient, a skilled rider, and happy to enjoy the journey both on and off the bike.
+                    
+                    He has a deep knowledge of the trails from Pokhara to Lo Manthang - if you're looking for off-road, he's got you. We got more than we bargained for, including crossing the Kali Gandaki river. He was happy to take control of our bike for a couple of areas I didn't feel confident to cross.
+                    
+                    Our plan was primarily to see the cultural richness of Upper Mustang more than the off-road trails. Rohan was happy to translate at the various sights and Monasteries along the way. He connected with local people to provide us much information as he could.
+                    
+                    Above all, he was happy to be flexible. Our plans changed several times as we got further up the valley. Rohan was totally happy to roll with it, helping to organise our accommodation as needed.
+                    
+                    He also managed to negotiate better deals on some of our hotels and meals than the tourist we were being offered. In one case, we had been over-charged 7,000 rupees on a hotel bill in error. Not on Rohan's watch!
+                    
+                    I can't recommend Rohan enough. We brought our own Scram, but I know they have some great condition Royal Enfields in stock, and some solid deals on them when you are doing a tour.
+                </div>
+            </div>
+            <div class="review-item" style="background: #FFFFFF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <div>
+                        <div class="reviewer-name" style="font-weight: 700; color: #222; font-size: 1.1rem;">Aticia Reyes<span style='font-weight:400; color:#888; font-size:0.95em;'>(Phillipines)</span></div>
+                        <div class="review-date" style="color: #666; font-size: 0.9rem;">5 days ago</div>
+                    </div>
+                    <div class="review-stars" style="display: flex; gap: 0.2rem;">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text" style="color: #333; line-height: 1.6; font-size: 1rem;">
+                    An Unforgettable Motorcycle Journey Through Nepal
+                    I recently took a quick motorcycle journey from Pokhara to Lete, then on to Muktinath, Marpha, and back to Pokhara and it was truly one for the books! Though short, the trip was absolutely worthwhile and filled with breathtaking views and memorable experiences.
+                    The team was incredibly accommodating from start to finish, always making sure I was comfortable and enjoying every moment of the ride. They're not just skilled and professional riders they're beautiful souls who genuinely care. The whole journey felt like I was traveling with friends, not just with guides.
+                    If you want to explore Nepal from a fresh, unique perspective, especially these stunning regions, I can't recommend them enough. Get ready to be amazed and to leave with a full heart.
+                </div>
+            </div>
+            <div class="review-item" style="background: #FFFFFF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <div>
+                        <div class="reviewer-name" style="font-weight: 700; color: #222; font-size: 1.1rem;">Desi Aitcheson <span style='font-weight:400; color:#888; font-size:0.95em;'>(Germany)</span></div>
+                        <div class="review-date" style="color: #666; font-size: 0.9rem;">a year ago</div>
+                    </div>
+                    <div class="review-stars" style="display: flex; gap: 0.2rem;">
+                        {% for _ in range(5) %}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-text" style="color: #333; line-height: 1.6; font-size: 1rem;">
+                    We organized a last minute 1 day ride for 3 riders with a guide with these guys and they were able to provide bikes, gear and 2 guides with 2 days notice. Ride itself was excellent mix of technical trails and paved roads and great scenery and adventure along the way. Very fun and friendly experience and would definitely recommend using them for your tour. I'll be back for sure.
+                </div>
+            </div>
+          
+            
+        </div>
+    </div>
+</section>
+
+<!-- Similar Tours Section -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title">View Other Available Tours</h2>
+        <p class="section-subtitle">A FEW WE THINK YOU MIGHT LIKE</p>
+        <div class="similar-bikes-grid">
+            {% if other_tours %}
+                {% for other_tour in other_tours[:4] %}
+                <div class="similar-bike-card">
+                    <div style="background: #eee; border: 2px dashed #FF6B35; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="{{ url_for('static', filename=get_image_path(other_tour.image)) }}" alt="{{ other_tour.title }}" class="similar-bike-image">
+                    </div>
+                    <div class="similar-bike-content">
+                        <div class="similar-bike-location">
+                            <span class="location-flag">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,3V21L12,18L21,21V3H3M5,5H19V18.13L12,15.8L5,18.13V5Z"/>
+                                </svg>
+                            </span>
+                            <span class="location-text">Nepal, Pokhara</span>
+                            <div class="bike-rating">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700">
+                                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                                </svg>
+                                <span>16 reviews</span>
+                            </div>
+                        </div>
+                        <h3 class="similar-bike-name">{{ other_tour.title }}</h3>
+                        <div class="similar-bike-pricing">
+                            <span class="price-from">from</span>
+                            <span class="price-amount">{{ other_tour.price }}</span>
+                            <span class="price-period">/rider</span>
+                            <a href="{{ url_for('tour_detail', tour_name=other_tour.title|replace(' ', '-')|lower) }}" class="view-btn">VIEW</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section: Super Sexy, Premium SVGs for Tours (ABOVE FOOTER) -->
+<section class="content-section faq-section" style="background: rgb(24,24,24); color: #fff; padding: 4rem 0 3rem 0; font-family: 'Inter', sans-serif; border-radius: 0; margin-bottom: 0;">
+    <div class="container">
+        <h2 class="section-title" style="color: #FF6B35; text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 2rem; letter-spacing: -1px;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            {% set faqs = [
+                {"q": "Do I need a license to join a motorcycle tour?", "a": "Yes. You must have:<br><ul style='margin:0 0 0 1.5rem;'><li>A valid motorcycle license, and</li><li>For international riders: an International Driving Permit (IDP) with motorcycle endorsement.</li></ul>", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/><path d='M3 11h18'/></svg>"},
+                {"q": "Is fuel included in the tour price?", "a": "Yes, fuel is included for all guided tours. You will start each day with a full tank.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='2' width='12' height='20' rx='2'/><path d='M7 7h2'/><path d='M7 11h2'/><path d='M7 15h2'/><path d='M17 7v10a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2z'/></svg>"},
+                {"q": "What if I damage the bike during the tour?", "a": "Riders are responsible for any damage or mechanical issues caused by accidents, misuse, or negligence. We inspect bikes before and after every tour.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3 2 3h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z'/><path d='M12 10v6'/><path d='M9 13h6'/></svg>"},
+                {"q": "Can I leave the group or take detours during the tour?", "a": "For safety and logistics, we recommend staying with the group. If you wish to explore separately, please inform your guide in advance.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M2 12h20'/><path d='M12 2a15.3 15.3 0 0 1 0 20'/></svg>"},
+                {"q": "Do we offer one-way tours?", "a": "Not at the moment. All tours start and end in Pokhara unless specified otherwise.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 17l4-4-4-4'/><path d='M21 13H7a4 4 0 0 1 0-8h1'/></svg>"},
+                {"q": "Do I need to pay a security deposit?", "a": "Yes, we require a refundable security deposit and a copy of your ID or passport. The amount depends on the motorcycle model.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/></svg>"},
+                {"q": "Can I ride with a pillion (passenger)?", "a": "Yes! Riding with a pillion is allowed. We can also provide an extra helmet on request.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='9' cy='7' r='4'/><circle cx='17' cy='17' r='4'/><path d='M17 13v-2a4 4 0 0 0-4-4H9'/></svg>"},
+                {"q": "What happens if the bike breaks down during the tour?", "a": "We offer support throughout the tour. Our guides carry essential tools and backup support is available for remote areas.", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='11' width='18' height='10' rx='2'/><path d='M7 11V7a5 5 0 0 1 10 0v4'/></svg>"},
+                {"q": "How do I book a tour?", "a": "You can:<ul style='margin:0 0 0 1.5rem;'><li>Call or WhatsApp us directly</li><li>Message us on Instagram <b>@bulletbasecamp</b></li><li>Or visit our Google Business Profile or office in Lakeside, Pokhara</li></ul>", "icon": "<svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='#FF6B35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2'/><path d='M16 3v4'/><path d='M8 3v4'/></svg>"}
+            ] %}
+            <div class="faq-accordion">
+                {% for faq in faqs %}
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span class="faq-q-icon" aria-hidden="true">{{ faq.icon|safe }}</span>
+                        <span class="faq-q-text">{{ faq.q }}</span>
+                        <span class="faq-toggle-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-a-text">{{ faq.a|safe }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.faq-section {
+    border-radius: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    margin-bottom: 0;
+    font-family: 'Inter', sans-serif;
+    background: #22223b;
+}
+.faq-accordion {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.faq-item {
+    background: #232323;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.faq-item.open {
+    box-shadow: 0 8px 32px rgba(255,107,53,0.15);
+}
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 1.5rem 2rem 1.5rem 1.5rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+}
+.faq-q-icon {
+    margin-right: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+.faq-toggle-icon {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+}
+.faq-item.open .faq-toggle-icon {
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: #232323;
+    color: #fff;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    padding: 0 2rem;
+}
+.faq-item.open .faq-answer {
+    padding: 1rem 2rem 2rem 2rem;
+    max-height: 400px;
+}
+.faq-a-text {
+    font-size: 1.1rem;
+    color: #eee;
+    line-height: 1.7;
+}
+@media (max-width: 600px) {
+    .faq-section { padding: 2rem 0 1.5rem 0; }
+    .faq-accordion { max-width: 100%; }
+    .faq-question { font-size: 1rem; padding: 1.2rem 1rem 1.2rem 1rem; }
+    .faq-answer { padding: 0 1rem; }
+    .faq-item.open .faq-answer { padding: 1rem 1rem 1.5rem 1rem; }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function() {
+            const isOpen = item.classList.contains('open');
+            faqItems.forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+});
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingPanel = document.querySelector('.booking-panel');
+    const ridersInput = document.querySelector('.riders-input');
+    const addonCheckboxes = document.querySelectorAll('.addon-item input[type="checkbox"]');
+    const priceDisplay = document.querySelector('.rental-price');
+    const pricePeriod = document.querySelector('.price-period');
+    const originalPriceDisplay = document.querySelector('.price-original-struck');
+    const discountTag = document.querySelector('.discount-tag');
+    const ridersError = document.querySelector('.riders-error');
+    const startDateInput = document.querySelector('.start-date-input');
+    const timeInput = document.querySelector('.time-input');
+    const bookNowBtn = document.getElementById('book-now-btn');
+    const inquiryBtn = document.getElementById('inquiry-btn');
+    const discountInfo = document.querySelector('.discount-info');
+
+    const basePrice = parseFloat(bookingPanel.dataset.basePrice) || 0;
+    const tourDuration = bookingPanel.dataset.tourDuration || '';
+
+    // Extract number of days from tour duration (e.g., "5 days", "3 Days", "7-day", etc.)
+    function extractDaysFromDuration(duration) {
+        const match = duration.match(/(\d+)/);
+        return match ? parseInt(match[1]) : 1;
+    }
+    
+    const numberOfDays = extractDaysFromDuration(tourDuration);
+
+    function formatPrice(amount) {
+        return '$' + amount.toLocaleString('en-US');
+    }
+
+    function calculateAndUpdatePrice() {
+        const riders = parseInt(ridersInput.value) || 1;
+        
+        // Calculate Add-ons total (NOT affected by discounts, but multiplied by number of days)
+        let addonsTotal = 0;
+        addonCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const item = checkbox.closest('.addon-item');
+                const addonPrice = parseFloat(item.dataset.price) || 0;
+                addonsTotal += addonPrice * numberOfDays;
+            }
+        });
+
+        // Calculate base tour price with discounts
+        let baseTourPrice = basePrice * riders;
+        let originalTotal = baseTourPrice;
+        let discountPercent = 0;
+
+        // Apply discounts for group bookings (ONLY to base tour price)
+        if (riders >= 7 && riders <= 8) {
+            discountPercent = 10;
+        } else if (riders >= 5 && riders <= 6) {
+            discountPercent = 5;
+        }
+
+        if (discountPercent > 0) {
+            baseTourPrice *= (1 - discountPercent / 100);
+            originalPriceDisplay.textContent = formatPrice(originalTotal);
+            discountTag.textContent = `${discountPercent}% OFF`;
+            discountTag.style.visibility = 'visible';
+        } else {
+            originalPriceDisplay.textContent = '';
+            discountTag.style.visibility = 'hidden';
+        }
+
+        // Add add-ons to the final price (no discount applied to add-ons)
+        const totalPrice = baseTourPrice + addonsTotal;
+
+        priceDisplay.textContent = formatPrice(Math.round(totalPrice));
+        pricePeriod.textContent = riders > 1 ? `/ ${riders} riders` : '/rider';
+
+        // Update discount info text
+        let discountText = '';
+        if (riders >= 5 && riders <= 6) discountText += '5-6 riders: 5% off';
+        if (riders >= 7 && riders <= 8) discountText += (discountText ? ' | ' : '') + '7-8 riders: 10% off';
+        discountInfo.textContent = discountText;
+    }
+
+    function triggerFloatyPrice(addonItem) {
+        const addonPrice = parseFloat(addonItem.dataset.price) || 0;
+        if (addonPrice <= 0) return;
+
+        const totalAddonPrice = addonPrice * numberOfDays;
+        const floatyText = document.createElement('div');
+        floatyText.textContent = `+$${totalAddonPrice}`;
+        floatyText.className = 'floating-price-text';
+        
+        floatyText.style.top = '50%';
+        floatyText.style.left = '50%';
+
+        addonItem.appendChild(floatyText);
+
+        // Clean up the DOM after animation
+        floatyText.addEventListener('animationend', () => {
+            floatyText.remove();
+        });
+    }
+
+    function validateForm() {
+        const riders = parseInt(ridersInput.value) || 0;
+        const startDate = startDateInput.value;
+        const pickupTime = timeInput.value;
+        
+        const isValid = riders >= 1 && startDate && pickupTime;
+        
+        if (isValid) {
+            bookNowBtn.disabled = false;
+            bookNowBtn.style.opacity = '1';
+            bookNowBtn.style.cursor = 'pointer';
+        } else {
+            bookNowBtn.disabled = false; // Keep button enabled but show validation
+            bookNowBtn.style.opacity = '1';
+            bookNowBtn.style.cursor = 'pointer';
+        }
+    }
+
+    function showValidationMessage(field, message) {
+        // Remove existing validation message
+        const existingMessage = field.parentNode.querySelector('.validation-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Add red border to the field
+        field.style.borderColor = '#dc3545';
+        
+        // Add new validation message
+        const validationMessage = document.createElement('div');
+        validationMessage.className = 'validation-message';
+        validationMessage.style.color = '#dc3545';
+        validationMessage.style.fontSize = '0.9rem';
+        validationMessage.style.marginTop = '0.5rem';
+        validationMessage.style.fontWeight = '600';
+        validationMessage.textContent = message;
+        
+        field.parentNode.appendChild(validationMessage);
+    }
+
+    function clearValidationMessage(field) {
+        const existingMessage = field.parentNode.querySelector('.validation-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Remove red border
+        field.style.borderColor = '#E5E5E5';
+    }
+
+    // Event Listeners
+    ridersInput.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value, 10);
+        if (value > 20) {
+            e.target.value = 20;
+            ridersError.style.display = 'block';
+        } else {
+            ridersError.style.display = 'none';
+        }
+        calculateAndUpdatePrice();
+        validateForm();
+        clearValidationMessage(e.target);
+    });
+
+    startDateInput.addEventListener('change', () => {
+        validateForm();
+        clearValidationMessage(startDateInput);
+    });
+    
+    timeInput.addEventListener('change', () => {
+        validateForm();
+        clearValidationMessage(timeInput);
+    });
+
+    addonCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            calculateAndUpdatePrice();
+            const addonItem = checkbox.closest('.addon-item');
+            if (checkbox.checked) {
+                triggerFloatyPrice(addonItem);
+                addonItem.classList.add('selected');
+            } else {
+                addonItem.classList.remove('selected');
+            }
+        });
+    });
+
+    // Initial calculation and validation on page load
+    calculateAndUpdatePrice();
+    validateForm();
+
+    // Book Now button logic
+    if (!bookNowBtn) return;
+
+    bookNowBtn.addEventListener('click', function() {
+        // Validate form before proceeding
+        const ridersCount = parseInt(ridersInput.value) || 0;
+        const startDateValue = startDateInput.value;
+        const pickupTimeValue = timeInput.value;
+        
+        let hasErrors = false;
+        
+        // Check each field and show validation messages
+        if (!ridersCount || ridersCount < 1) {
+            showValidationMessage(ridersInput, 'Please enter the number of riders');
+            hasErrors = true;
+        }
+        
+        if (!startDateValue) {
+            showValidationMessage(startDateInput, 'Please select a start date');
+            hasErrors = true;
+        }
+        
+        if (!pickupTimeValue) {
+            showValidationMessage(timeInput, 'Please select a pickup time');
+            hasErrors = true;
+        }
+        
+        // If there are validation errors, don't proceed
+        if (hasErrors) {
+            return;
+        }
+        // Get tour name
+        var tourName = document.querySelector('.hero-title')?.textContent?.trim() || '';
+        // Get number of riders
+        var riders = ridersInput ? ridersInput.value : '';
+        // Get start date
+        var startDate = startDateInput ? startDateInput.value : '';
+        // Get pickup time
+        var pickupTime = timeInput ? timeInput.value : '';
+
+        // Get selected add-ons
+        var selectedAddons = [];
+        var addonCheckboxesChecked = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+        addonCheckboxesChecked.forEach(function(checkbox) {
+            var addonItem = checkbox.closest('.addon-item');
+            var addonTitle = addonItem.querySelector('.addon-title').textContent.trim();
+            var addonPriceRaw = parseFloat(addonItem.dataset.price) || 0;
+            selectedAddons.push(`${addonTitle}|${addonPriceRaw}`);
+        });
+
+        // Get price details
+        const basePrice = parseFloat(bookingPanel.dataset.basePrice) || 0;
+        const finalPrice = priceDisplay.textContent;
+
+        // Build query string
+        var params = new URLSearchParams({
+            type: 'tour',
+            name: tourName,
+            riders: riders,
+            base_price: basePrice,
+            start_date: startDate,
+            pickup_time: pickupTime,
+            addons: selectedAddons.join(','),
+            final_price: finalPrice
+        });
+
+        // Redirect to checkout page with params
+        window.location.href = "{{ url_for('checkout') }}?" + params.toString();
+    });
+    
+    // Handle add-on selection visual feedback
+    var addonToggles = document.querySelectorAll('.addon-item input[type="checkbox"]');
+    addonToggles.forEach(function(toggle) {
+        toggle.addEventListener('change', function() {
+            var addonItem = this.closest('.addon-item');
+            if (this.checked) {
+                addonItem.classList.add('selected');
+            } else {
+                addonItem.classList.remove('selected');
+            }
+        });
+        
+        // Make the whole card clickable
+        var addonItem = toggle.closest('.addon-item');
+        addonItem.addEventListener('click', function(e) {
+            // Don't trigger if clicking on the toggle itself
+            if (e.target !== toggle && e.target !== toggle.nextElementSibling) {
+                toggle.checked = !toggle.checked;
+                toggle.dispatchEvent(new Event('change'));
+            }
+        });
+    });
+
+    // Inquiry button functionality
+    if (inquiryBtn) {
+        inquiryBtn.addEventListener('click', function() {
+            // Get tour name
+            var tourName = document.querySelector('.hero-title')?.textContent?.trim() || '';
+            // Get number of riders
+            var riders = ridersInput ? ridersInput.value : '';
+            // Get start date
+            var startDate = startDateInput ? startDateInput.value : '';
+            // Get pickup time
+            var pickupTime = timeInput ? timeInput.value : '';
+
+            // Get selected add-ons
+            var selectedAddons = [];
+            var addonCheckboxesChecked = document.querySelectorAll('.addon-item input[type="checkbox"]:checked');
+            addonCheckboxesChecked.forEach(function(checkbox) {
+                var addonItem = checkbox.closest('.addon-item');
+                var addonTitle = addonItem.querySelector('.addon-title').textContent.trim();
+                var addonPriceRaw = parseFloat(addonItem.dataset.price) || 0;
+                selectedAddons.push(`${addonTitle}|${addonPriceRaw}`);
+            });
+
+            // Build inquiry message
+            var inquiryMessage = `Hi, I'm interested in the ${tourName} tour. I have some questions:\n\n`;
+            inquiryMessage += `Tour Details:\n`;
+            inquiryMessage += `- Number of riders: ${riders}\n`;
+            inquiryMessage += `- Start date: ${startDate}\n`;
+            inquiryMessage += `- Pickup time: ${pickupTime}\n`;
+            
+            if (selectedAddons.length > 0) {
+                inquiryMessage += `- Selected add-ons: ${selectedAddons.map(addon => addon.split('|')[0]).join(', ')}\n`;
+            }
+            
+            inquiryMessage += `\nPlease let me know about availability, pricing, and any other details I should know.`;
+
+            // Build query string for contact form
+            var params = new URLSearchParams({
+                tour: tourName,
+                service: 'tours',
+                message: inquiryMessage
+            });
+
+            // Redirect to contact page with inquiry details
+            window.location.href = "{{ url_for('contact') }}?" + params.toString() + "#contact-form";
+        });
+    }
+});
+</script>
+{% endblock %} 

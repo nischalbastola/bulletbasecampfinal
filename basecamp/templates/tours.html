@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Himalayan Motorcycle Tours from Pokhara - Annapurna, Mustang, Upper Mustang Bike Trips Nepal{% endblock %}
+{% block description %}Best motorcycle tours from Pokhara Nepal. Guided Himalayan bike trips: Annapurna Circuit, Mustang, Upper Mustang on Royal Enfield. Professional guides, full support from Lakeside Pokhara.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/tours-hero.mp4') }}" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+    </video>
+    
+    <div class="hero-content">
+        <p class="hero-tagline">Himalayan Adventures from Pokhara</p>
+        <h1 class="hero-title">Motorcycle Tours from Pokhara</h1>
+        <p class="body-text" style="color: #FFFFFF; font-size: 1.2rem; margin: 1.5rem 0;">
+            Ride wild. Conquer curves. Explore Nepal on two wheels.
+        </p>
+        
+        <div class="hero-buttons">
+            <a href="#tours" class="btn-primary">View Pokhara Tours</a>
+                            <a href="{{ url_for('contact') }}#contact-form" class="btn-secondary">Book from Pokhara</a>
+        </div>
+    </div>
+</section>
+
+<!-- Tours Section -->
+<section class="content-section" id="tours">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Himalayan Motorcycle Tours from Pokhara</h2>
+        <p class="body-text" style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+            Choose from our carefully crafted motorcycle tours starting from Pokhara. Each Himalayan journey includes professional guides, safety equipment, accommodation, and unforgettable Nepal experiences.
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="search-container" style="max-width: 500px; margin: 0 auto 3rem; text-align: center;">
+            <input type="text" id="tour-search" class="search-input" placeholder="Search tours by name, destination, difficulty..." 
+                   style="width: 100%; padding: 1rem 1.5rem; font-size: 1rem; border: 2px solid #E5E5E5; border-radius: 50px; outline: none; transition: all 0.3s ease; font-family: 'Inter', sans-serif;">
+            <div id="search-results-count" class="body-text" style="margin-top: 0.5rem; color: #666666; font-size: 0.9rem;"></div>
+        </div>
+        
+        <div class="category-grid" id="tours-grid">
+            {% for tour in tours %}
+            <div class="category-card tour-card" data-title="{{ tour.title|lower if tour.title else '' }}" data-description="{{ tour.description|lower if tour.description else '' }}" data-difficulty="{{ tour.difficulty|lower if tour.difficulty else '' }}" data-duration="{{ tour.duration|lower if tour.duration else '' }}">
+                <a href="{{ url_for('tour_detail', tour_name=tour.title|replace(' ', '-')|lower) }}" class="bike-image-link">
+                    <img src="{{ url_for('static', filename=get_image_path(tour.image)) }}" alt="{{ tour.title if tour.title else 'Tour' }}" class="category-image">
+                </a>
+                <div class="category-content">
+                    <h3 class="card-title">{{ tour.title if tour.title else 'Tour' }}</h3>
+                    
+                    <p class="body-text" style="margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 3.2em; line-clamp: 2;">{{ tour.description }}</p>
+                    
+                    <!-- Tour Details -->
+                    <div style="background: #FFFFFF; padding: 1rem; margin: 1rem 0;">
+                        <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: #000000;">Tour Details:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                            <div><strong>Duration:</strong> {{ tour.duration }}</div>
+                            <div><strong>Level:</strong> {{ tour.difficulty }}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pricing -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0;">
+                        <div style="display: flex; flex-direction: column; justify-content: center;">
+                            <div class="price-text">{{ tour.price }}/person</div>
+                            <div class="body-text" style="font-size: 0.9rem; color: #666666;">Group Discount Available</div>
+                        </div>
+                        <a href="{{ url_for('tour_detail', tour_name=tour.title|replace(' ', '-')|lower) }}" class="btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Booking Info -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Don't Know How to Ride Or Want A Custom Tour?</h2>
+        <p class="body-text" style="font-size: 1.1rem; margin: 2rem 0;">
+            Bullet Basecamp has got your back. We offer BOTH pillion ride services and custom tours. Contact us for more details.
+        </p>
+        
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}" class="btn-primary">Contact Us</a>
+            <a href="tel:+977-9864434112" class="btn-secondary" style="color: #000000; border-color: #000000;">Call Now</a>
+        </div>
+        
+    </div>
+</section>
+
+<style>
+/* Tour Card Equal Height Styles */
+.tour-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tour-card .category-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.tour-card .body-text {
+    line-height: 1.6;
+}
+
+/* Ensure consistent card heights */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.category-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mobile responsiveness for tour cards */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tour-card .body-text {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        min-height: 3.2em;
+    }
+    
+    .tour-card .category-content {
+        padding: 1rem;
+    }
+    
+    .tour-card .price-text {
+        font-size: 1.2rem !important;
+    }
+    
+    .tour-card .btn-primary {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+    
+    .tour-card .category-content > div:last-child {
+        align-items: flex-start !important;
+    }
+    
+    .tour-card .btn-primary {
+        margin-top: 0.2rem !important;
+    }
+}
+</style>
+{% endblock %} 

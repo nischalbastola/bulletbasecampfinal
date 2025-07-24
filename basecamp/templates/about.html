@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Bullet Basecamp{% endblock %}
+{% block description %}Learn about Bullet Basecamp's story, mission, and team. Over 20 years of Royal Enfield expertise and adventure planning.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/about-hero.mp4') }}" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+    </video>
+    
+    <div class="hero-content">
+        <p class="hero-tagline">Our Story</p>
+        <h1 class="hero-title">About Bullet Basecamp</h1>
+        <p class="body-text" style="color: #FFFFFF; font-size: 1.2rem; margin: 1.5rem 0;">
+            Three decades of passion for Royal Enfield motorcycles and epic adventures. Discover our journey and meet the team behind your next great ride.
+        </p>
+        
+        <div class="hero-buttons">
+            <a href="#achievements" class="btn-primary">Our Achievements</a>
+            <a href="#team" class="btn-secondary">Our Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="content-section">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start;">
+        <div style="max-width: 800px; flex: 1 1 350px; margin: 0; text-align: left;">
+            <h2 class="section-title" style="color: #222; letter-spacing: 2px; text-align: left;">The Origin Of Bullet Basecamp</h2>
+            <div style="font-size: 1.13rem; margin: 2.5rem 0 2.5rem 0; background: #f8f8f8; border-radius: 1.2rem; box-shadow: 0 4px 32px rgba(0,0,0,0.06); padding: 2.5rem 2rem; text-align: left; border-left: 8px solid #bbb; margin-left: 0; color: #222; font-family: inherit; letter-spacing: 0.2px; position: relative; overflow: hidden;">
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    Long before Pokhara became a hub for adventure seekers, one man quietly built a name that would echo through Nepal’s motorcycling community. <b>Raju Kunwar, a self-taught mechanic with a deep passion for Royal Enfields, opened the <span style='color:#222;'>very first Enfield workshop in Pokhara</span></b>, a modest space known today as Raju Bullet Surgery.
+                </p>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    In those early days, travelers riding across the Himalayas would find their way to his workshop, often by word of mouth. They came with worn-out bikes, broken parts, and stories from the road. What they found was more than a mechanic. Raju dai not only repaired their machines, often without modern tools, but also taught them how to care for their bikes, explained what went wrong, and invited them into the culture of riding in Nepal. The garage became a meeting place, where tools clinked, beers were shared, and lifelong friendships were made.
+                </p>
+                <blockquote style="border-left: 4px solid #bbb; margin: 2rem 0; padding-left: 1.2rem; color: #555; font-style: italic; font-size: 1.08rem; background: #ededed;">
+                    Now, that spirit has passed into the next generation.
+                </blockquote>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    The workshop that once fixed bikes under trees is now the foundation of Bullet Basecamp, a family-run motorcycle tour and rental company. With Raju’s son continuing the craft as both mechanic and certified tour guide, we’ve carried the legacy forward, blending old-school mechanical mastery with modern-day Himalayan adventure.
+                </p>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    We still fix bikes with the same hands-on care and pride. But now, we also lead guided Royal Enfield tours into the heart of Nepal, for riders who want more than just a machine; they want connection, challenge, and the kind of ride that sticks with you long after the engine stops.
+                </p>
+                <div style="background: #222; color: #fff; border-radius: 0.7rem; padding: 1.2rem 1.5rem; font-weight: 600; font-size: 1.08rem; margin-top: 2rem; text-align: center; letter-spacing: 1px;">
+                    Our story is rooted in passion, precision, and the belief that riding isn’t just about the road it’s about the people who keep it alive.<br><br>
+                    <span style="font-size: 1.2rem; font-weight: 700;">Welcome to Bullet Basecamp. This is where the journey begins.</span>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 0 1 340px; min-width: 280px; max-width: 420px; display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; justify-content: flex-start;">
+            <img src="{{ url_for('static', filename='images/storypic2.jpg') }}" alt="Raju Kunwar working on a Royal Enfield" style="width: 100%; border-radius: 1rem; box-shadow: 0 2px 16px rgba(0,0,0,0.10); object-fit: cover;" loading="lazy">
+            <img src="{{ url_for('static', filename='images/storypic1.jpg') }}" alt="Bullet Basecamp family and bikes" style="width: 100%; border-radius: 1rem; box-shadow: 0 2px 16px rgba(0,0,0,0.10); object-fit: cover;" loading="lazy">
+            <img src="{{ url_for('static', filename='images/storypic3.jpg') }}" alt="Royal Enfield adventure ride" style="width: 100%; border-radius: 1rem; box-shadow: 0 2px 16px rgba(0,0,0,0.10); object-fit: cover;" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="content-section" id="team">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Meet Our Team</h2>
+        
+        <div class="category-grid">
+            <!-- Raju Kunwar -->
+            <div class="category-card">
+                <a href="{{ url_for('raju_profile') }}"><img src="{{ url_for('static', filename='images/team-founder.jpg') }}" alt="Raju Kunwar" class="category-image" style="cursor:pointer;"></a>
+                <div class="category-content">
+                    <h3 class="card-title">Raju Kunwar</h3>
+                    <p class="body-text" style="color: #FF6B35; font-weight: 600; margin-bottom: 1rem;">Master Mechanic & Founder</p>
+                    <ul class="body-text" style="margin: 1rem 0 0 0; padding-left: 1.2rem; text-align: left;">
+                        <li>30+ years of Royal Enfield experience</li>
+                        <li>Founder of Raju Bullet Surgery</li>
+                        <li>Rode a motorcycle from Nepal to Netherlands in 2008</li>
+                        <li>Known for hands-on, old-school mechanical skills</li>
+                        <li>Mentor to hundreds of riders and mechanics</li>
+                        <li>Legend in Nepal’s motorcycle community</li>
+                    </ul>
+                    <div class="team-socials">
+                        <a href="https://www.facebook.com/share/1FDDcPDcQn/" target="_blank" aria-label="Raju Facebook" class="team-social-link">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rohan Kunwar -->
+            <div class="category-card">
+                <a href="{{ url_for('rohan_profile') }}"><img src="{{ url_for('static', filename='images/rohanpic.JPG') }}" alt="Rohan Kunwar" class="category-image" style="cursor:pointer;"></a>
+                <div class="category-content">
+                    <h3 class="card-title">Rohan Kunwar</h3>
+                    <p class="body-text" style="color: #FF6B35; font-weight: 600; margin-bottom: 1rem;">Tour Coordinator</p>
+                    <ul class="body-text" style="margin: 1rem 0 0 0; padding-left: 1.2rem; text-align: left;">
+                        <li>Automobile engineering graduate</li>
+                        <li>Government certified tour guide</li>
+                        <li>Leads epic Himalayan adventures</li>
+                        <li>Expert in modern bike tech & repairs</li>
+                        <li>Passionate about music and travel</li>
+                    </ul>
+                    <div class="team-socials">
+                        <a href="https://www.facebook.com/share/1AqBFfNJUX/" target="_blank" aria-label="Rohan Facebook" class="team-social-link">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/bulletbasecamp" target="_blank" aria-label="Rohan Instagram" class="team-social-link">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Bobby -->
+            <div class="category-card">
+                <a href="{{ url_for('bobby_profile') }}"><img src="{{ url_for('static', filename='images/bobbypic.jpg') }}" alt="Bobby" class="category-image" style="cursor:pointer;"></a>
+                <div class="category-content">
+                    <h3 class="card-title">Bobby</h3>
+                    <p class="body-text" style="color: #FF6B35; font-weight: 600; margin-bottom: 1rem;">Tour Guide</p>
+                    <ul class="body-text" style="margin: 1rem 0 0 0; padding-left: 1.2rem; text-align: left;">
+                        <li>Expert in off-road and adventure routes</li>
+                        <li>Fluent in English, Nepali, and Hindi</li>
+                        <li>Known for his humor and positive energy</li>
+                        <li>Passionate about local culture and history</li>
+                        <li>Always ready to help riders in tough spots</li>
+                    </ul>
+                    <div class="team-socials">
+                        <a href="https://www.facebook.com/share/1JF1HWnZQg/" target="_blank" aria-label="Bobby Facebook" class="team-social-link">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Naty Pato -->
+            <div class="category-card">
+                <img src="{{ url_for('static', filename='images/natypic.jpg') }}" alt="Naty Pato" class="category-image" style="cursor:pointer;">
+                <div class="category-content">
+                    <h3 class="card-title">Naty Pato</h3>
+                    <p class="body-text" style="color: #FF6B35; font-weight: 600; margin-bottom: 1rem;">Female Guide</p>
+                    <ul class="body-text" style="margin: 1rem 0 0 0; padding-left: 1.2rem; text-align: left;">
+                        <li>Passionate about empowering women in adventure travel</li>
+                        <li>Fluent in English, Spanish, and Nepali</li>
+                        <li>Expert in Himalayan culture and local traditions</li>
+                        <li>Leads all-women and mixed group tours with care and energy</li>
+                        <li>Known for her infectious laugh and positive vibes</li>
+                        <li>Always ready to help riders push their limits safely</li>
+                    </ul>
+                    <div class="team-socials">
+                        <a href="https://www.instagram.com/" target="_blank" aria-label="Naty Instagram" class="team-social-link">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Collage Section -->
+<section class="content-section gallery-section" style="background: #f8f8f8; padding: 4rem 0;">
+    <div class="container">
+        <h2 class="section-title" style="color: #222; text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem; font-weight: 900; letter-spacing: -1px;">Back to 90s</h2>
+        <div class="gallery-grid">
+            {% set gallery_images = [
+                'images/aboutgal1.jpg',
+                'images/aboutgal2.jpg',
+                'images/aboutgal3.jpg',
+                'images/aboutgal4.jpg',
+                'images/aboutgal5.jpg',
+                'images/aboutgal6.jpg',
+                'images/aboutgal7.jpg',
+                'images/aboutgal8.jpg',
+                'images/aboutgal9.jpg',
+                'images/aboutgal10.jpg',
+                'images/aboutgal11.jpg',
+                'images/aboutgal12.jpg'
+            ] %}
+            {% for img in gallery_images %}
+            <div class="gallery-item">
+                <a href="{{ url_for('static', filename=img) }}" class="gallery-link" data-lightbox="gallery">
+                    <img src="{{ url_for('static', filename=img) }}" alt="Bullet Basecamp Gallery" class="gallery-img">
+                    <div class="gallery-overlay"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM7 7h10v10H7z"/></svg></div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Our Achievements</h2>
+        
+        <div class="category-grid">
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">13K+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Happy Riders</h3>
+                <p class="body-text">Over 13,000 satisfied customers have experienced unforgettable adventures with us across Nepal and beyond.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">30+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Years Experience</h3>
+                <p class="body-text">Three decades of Royal Enfield expertise and adventure planning experience in the Himalayas.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">25+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Tour Routes</h3>
+                <p class="body-text">Carefully curated routes covering the most scenic and adventurous destinations across Nepal and India.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Safety Record</h3>
+                <p class="body-text">Perfect safety record with comprehensive support, preparation, and professional guidance on every tour.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">10+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Premium Motorcycles</h3>
+                <p class="body-text">Fleet of 10+ well-maintained Royal Enfield motorcycles ready for any Himalayan adventure.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Customer Satisfaction</h3>
+                <p class="body-text">Perfect customer satisfaction rate with personalized service and unforgettable adventure experiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.gallery-section {
+    font-family: 'Inter', sans-serif;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 6px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+.gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(24,24,24,0.18);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-img {
+    transform: scale(1.06);
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    background: rgba(24,24,24,0.45);
+}
+.gallery-overlay svg {
+    filter: drop-shadow(0 2px 8px #0008);
+}
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 140px;
+    }
+}
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 120px;
+        gap: 4px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Simple lightbox effect
+    document.querySelectorAll('.gallery-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const src = this.getAttribute('href');
+            const lightbox = document.createElement('div');
+            lightbox.className = 'gallery-lightbox';
+            lightbox.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(24,24,24,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;';
+            lightbox.innerHTML = `<img src='${src}' style='max-width:90vw;max-height:90vh;border-radius:0;box-shadow:0 8px 32px #000a;'><span style='position:absolute;top:2rem;right:2rem;font-size:2.5rem;color:#fff;cursor:pointer;'>&times;</span>`;
+            document.body.appendChild(lightbox);
+            lightbox.querySelector('span').onclick = () => lightbox.remove();
+            lightbox.onclick = (ev) => { if(ev.target === lightbox) lightbox.remove(); };
+        });
+    });
+});
+</script>
+
+<!-- Call to Action -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Ready to Join Our Adventure Family?</h2>
+        <p class="body-text" style="font-size: 1.1rem; margin: 2rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Whether you're planning your first motorcycle tour or looking for expert service, 
+            we're here to make your Royal Enfield dreams come true.
+        </p>
+        
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}#contact-form" class="btn-primary">Get Started</a>
+            <a href="{{ url_for('tours') }}" class="btn-secondary" style="color: #000000; border-color: #000000;">View Adventures</a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

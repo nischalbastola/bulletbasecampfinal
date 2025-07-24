@@ -1,0 +1,459 @@
+{% extends "base.html" %}
+
+{% block title %}Bullet Basecamp Pokhara - #1 Royal Enfield Repair, Tours & Rentals in Lakeside Pokhara Nepal{% endblock %}
+{% block description %}Best motorcycle workshop in Pokhara Nepal. Royal Enfield repair, Himalayan bike tours, daily rentals in Lakeside. Emergency bike service, puncture repair, oil change. Open now!{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/hero-motorcycle.mp4') }}" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+    </video>
+    
+    <div class="hero-content">
+        <p class="hero-tagline">Pokhara's Premier Motorcycle Hub</p>
+        <h1 class="hero-title">Bullet Basecamp Pokhara</h1>
+        <p class="body-text" style="color: #FFFFFF; font-size: 1.2rem; margin: 1.5rem 0;">
+            Ride. Repair. Roar. Pokhara’s ultimate motorcycle adventure hub.
+        </p>
+        
+        <div class="hero-buttons">
+            <a href="{{ url_for('tours') }}" class="btn-primary">Himalayan Tours</a>
+            <a href="{{ url_for('rentals') }}" class="btn-secondary">Rent a Royal Enfield</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Preview Section -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Best Motorcycle Services in Pokhara</h2>
+        <p class="body-text" style="text-align: center; max-width: 600px; margin: 0 auto;">
+            From epic Himalayan motorcycle tours to reliable Royal Enfield repair services in Lakeside Pokhara, we're your one-stop motorcycle workshop in Nepal.
+        </p>
+        
+        <div class="category-grid">
+            <!-- Tours Card -->
+            <a href="/tours" class="category-card" style="text-decoration: none; color: inherit;">
+                <img src="/static/images/himalayan-tour.jpg" alt="Pokhara Himalayan Motorcycle Tours" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Himalayan Motorcycle Tours from Pokhara</h3>
+                    <p class="body-text">
+                        Guided Royal Enfield tours starting from Pokhara. Annapurna Circuit, Mustang, Upper Mustang adventures. Professional guides, all gear included.
+                    </p>
+                    <p class="price-text">Starting from $650</p>
+                    <span class="btn-primary" style="margin-top: 1rem; display: inline-block;">View Pokhara Tours</span>
+                </div>
+            </a>
+            
+            <!-- Rentals Card -->
+            <a href="/rentals" class="category-card" style="text-decoration: none; color: inherit;">
+                <img src="/static/images/gallery-pic-3.jpg" alt="Royal Enfield Rental Pokhara Lakeside" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Royal Enfield Rental in Pokhara</h3>
+                    <p class="body-text">
+                        Rent Royal Enfield motorcycles in Lakeside Pokhara. Daily/weekly rates, well-maintained bikes, insurance included. Best rental rates in Pokhara.
+                    </p>
+                    <p class="price-text">From $45/day</p>
+                    <span class="btn-primary" style="margin-top: 1rem; display: inline-block;">Rent in Pokhara</span>
+                </div>
+            </a>
+            
+            <!-- Repairs Card -->
+            <a href="/repairs" class="category-card" style="text-decoration: none; color: inherit;">
+                <img src="/static/images/team-founder.jpg" alt="Motorcycle Repair Workshop Pokhara" class="category-image">
+                <div class="category-content">
+                    <h3 class="card-title">Motorcycle Repair Shop Pokhara</h3>
+                    <p class="body-text">
+                        Expert motorcycle mechanic in Pokhara. Royal Enfield servicing, puncture repair, oil change, emergency service. Open daily in Lakeside.
+                    </p>
+                    <p class="price-text">Free Estimates</p>
+                    <span class="btn-primary" style="margin-top: 1rem; display: inline-block;">Get Service</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="content-section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Why Choose Our Service</h2>
+        <div class="category-grid" style="margin-top: 3rem;">
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">30+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Years Experience</h3>
+                <p class="body-text">Three decades of Royal Enfield expertise and adventure planning experience in the Himalayas.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Certified Technicians</h3>
+                <p class="body-text">Our mechanics are Royal Enfield certified with years of experience working on these classic machines.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Transparent Pricing</h3>
+                <p class="body-text">No hidden fees or surprise charges. Get upfront pricing estimates before any work begins.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Genuine Parts</h3>
+                <p class="body-text">We use only authentic Royal Enfield parts and high-quality aftermarket components for lasting repairs.</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
+                </div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Warranty</h3>
+                <p class="body-text">All our work comes with a comprehensive warranty. We stand behind our service quality.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Customer Satisfaction</h3>
+                <p class="body-text">Perfect customer satisfaction rate with personalized service and unforgettable adventure experiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Carousel Section -->
+<section class="testimonials-section content-section">
+    <div class="container">
+        <h2 class="section-title testimonials-title">What Our Riders Say</h2>
+        
+        <div class="testimonial-carousel-wrapper">
+            <div class="testimonial-carousel" id="testimonialCarousel">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">I rented a Royal Enfield from Bullet Basecamp, and had an excellent service and experience with the company. I got the bike for 14 days, and they gave me a great deal on the price - much cheaper than any other company I spoke with. They remained in constant communication with me throughout my trip and gave me great advice. Both the father and son who run the company are very knowledgeable and friendly, along with being skilled mechanics and honest people who provide a great service. 100% recommend using this company :)</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Joel</h4>
+                                <p class="author-title">USA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">Had a great experience at Raju Bullet Surgery. Professional service, my bike runs like new! They also offer fantastic Royal Enfield rentals and tours. Highly recommend.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Naty Pato</h4>
+                                <p class="author-title">Argentina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">I rented a Royal Enfield Himalayan 411 for a 4 day solo ride between Pokhara and Muktinath, back and forth. The experience has been amazing under every single aspect. The motorbike was in perfect conditions and all the information and suggestions to make the best of the trip were top. Rohan is a real friend and brother and couldn't ask for more. Thanks a lot!</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Andrea Haku</h4>
+                                <p class="author-title">Italy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">We organized a last minute 1 day ride for 3 riders with a guide with these guys and they were able to provide bikes, gear and 2 guides with 2 days notice. Ride itself was excellent mix of technical trails and paved roads and great scenery and adventure along the way. Very fun and friendly experience and would definitely recommend using them for your tour. I'll be back for sure.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Desi Aitcheson</h4>
+                                <p class="author-title">Germany</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">I rented a Royal Enfield Himalayan 411 for a 4 day solo ride between Pokhara and Muktinath, back and forth. The experience has been amazing under every single aspect. The motorbike was in perfect conditions and all the information and suggestions to make the best of the trip were top. Rohan is a real friend and brother and couldn't ask for more. Thanks a lot!</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Andrea Haku</h4>
+                                <p class="author-title">Italy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p class="testimonial-text">Had a great experience at Raju Bullet Surgery. Professional service, my bike runs like new! They also offer fantastic Royal Enfield rentals and tours. Highly recommend.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Naty Pato</h4>
+                                <p class="author-title">Argentina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows (Desktop Only) -->
+            <button class="carousel-nav carousel-prev" aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            
+            <button class="carousel-nav carousel-next" aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <!-- Dot Indicators -->
+            <div class="carousel-indicators">
+                <button class="indicator active" data-slide="0" aria-label="View testimonial 1"></button>
+                <button class="indicator" data-slide="1" aria-label="View testimonial 2"></button>
+                <button class="indicator" data-slide="2" aria-label="View testimonial 3"></button>
+                <button class="indicator" data-slide="3" aria-label="View testimonial 4"></button>
+                <button class="indicator" data-slide="4" aria-label="View testimonial 5"></button>
+                <button class="indicator" data-slide="5" aria-label="View testimonial 6"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section (copied from about.html) -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Our Achievements</h2>
+        <div class="category-grid">
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">13K+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Happy Riders</h3>
+                <p class="body-text">Over 13,000 satisfied customers have experienced unforgettable adventures with us across Nepal and beyond.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">30+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Years Experience</h3>
+                <p class="body-text">Three decades of Royal Enfield expertise and adventure planning experience in the Himalayas.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">25+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Tour Routes</h3>
+                <p class="body-text">Carefully curated routes covering the most scenic and adventurous destinations across Nepal and India.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Safety Record</h3>
+                <p class="body-text">Perfect safety record with comprehensive support, preparation, and professional guidance on every tour.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; margin: 0 auto 1rem;">10+</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Premium Motorcycles</h3>
+                <p class="body-text">Fleet of 10+ well-maintained Royal Enfield motorcycles ready for any Himalayan adventure.</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #FF6B35; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; margin: 0 auto 1rem;">100%</div>
+                <h3 class="card-title" style="margin-bottom: 1rem;">Customer Satisfaction</h3>
+                <p class="body-text">Perfect customer satisfaction rate with personalized service and unforgettable adventure experiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Collage Section -->
+<section class="content-section gallery-section" style="background: #181818; padding: 4rem 0;">
+    <div class="container">
+        <h2 class="section-title" style="color: #FF6B35; text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem; font-weight: 900; letter-spacing: -1px;">Bullet Basecamp Gallery</h2>
+        <div class="gallery-grid">
+            {% set gallery_images = [
+                'images/gallery-pic-1.jpg',
+                'images/gallery-pic-2.jpg',
+                'images/gallery-pic-3.jpg',
+                'images/gallery-pic-4.jpg',
+                'images/gallery-pic-5.jpg',
+                'images/gallery-pic-6.jpg',
+                'images/gallery-pic-7.jpg',
+                'images/gallery-pic-8.jpg',
+                'images/gallery-pic-9.jpg'
+            ] %}
+            {% for img in gallery_images %}
+            <div class="gallery-item">
+                <a href="{{ url_for('static', filename=img) }}" class="gallery-link" data-lightbox="gallery">
+                    <img src="{{ url_for('static', filename=img) }}" alt="Bullet Basecamp Gallery" class="gallery-img">
+                    <div class="gallery-overlay"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM7 7h10v10H7z"/></svg></div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.gallery-section {
+    font-family: 'Inter', sans-serif;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 6px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+.gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(24,24,24,0.18);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-img {
+    transform: scale(1.06);
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    background: rgba(24,24,24,0.45);
+}
+.gallery-overlay svg {
+    filter: drop-shadow(0 2px 8px #0008);
+}
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 140px;
+    }
+}
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 120px;
+        gap: 4px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Simple lightbox effect
+    document.querySelectorAll('.gallery-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const src = this.getAttribute('href');
+            const lightbox = document.createElement('div');
+            lightbox.className = 'gallery-lightbox';
+            lightbox.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(24,24,24,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;';
+            lightbox.innerHTML = `<img src='${src}' style='max-width:90vw;max-height:90vh;border-radius:0;box-shadow:0 8px 32px #000a;'><span style='position:absolute;top:2rem;right:2rem;font-size:2.5rem;color:#fff;cursor:pointer;'>&times;</span>`;
+            document.body.appendChild(lightbox);
+            lightbox.querySelector('span').onclick = () => lightbox.remove();
+            lightbox.onclick = (ev) => { if(ev.target === lightbox) lightbox.remove(); };
+        });
+    });
+});
+</script>
+
+<!-- Call to Action -->
+<section class="content-section" style="background: #F8F8F8;">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Need Motorcycle Service in Pokhara Today?</h2>
+        <p class="body-text" style="font-size: 1.1rem; margin: 2rem 0;">
+            Visit Pokhara's most trusted motorcycle workshop. Located in Lakeside, we're open daily for repairs, rentals, and tour bookings.
+        </p>
+        
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}#contact-form" class="btn-primary">Visit Our Workshop</a>
+            <a href="tel:+977-9864434112" class="btn-secondary" style="color: #000000; border-color: #000000;">Call Pokhara Workshop</a>
+        </div>
+    </div>
+</section>
+{% endblock %} 
